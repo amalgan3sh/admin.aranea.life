@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body pt-0">                                    
-                                <form class="my-4" action="<?= base_url('verify_login') ?>" method="post">
+                                <form id="loginForm" class="my-4" action="<?= base_url('verify_login') ?>" method="post">
                                     <?= csrf_field() ?>
                                     <div class="form-group mb-2">
                                         <label class="form-label" for="username">Username</label>
@@ -70,7 +70,7 @@
                                 </form>
 
                                     <div class="m-3 text-center text-muted">
-                                        <p class="mb-0">Don't have an account ?  <a href="auth-register.html" class="text-primary ms-2">Free Resister</a></p>
+                                        <p class="mb-0">Don't have an account ?  <a href="register" class="text-primary ms-2">Free Resister</a></p>
                                     </div>
                                     <hr class="hr-dashed mt-4">
                                     <div class="text-center mt-n5">
@@ -102,6 +102,51 @@
     <script src="assets/libs/feather-icons/feather.min.js"></script>
     <!-- App js -->
     <script src="assets/js/app.js"></script>
+
+ <!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent default form submission
+
+    var formData = new FormData(this);
+
+    fetch('/verify_login', { // Update the URL to match your route
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            Swal.fire({
+                title: 'Success!',
+                text: 'You have logged in successfully.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.location.href = '/dashboard'; // Redirect to dashboard
+            });
+        } else {
+            Swal.fire({
+                title: 'Error!',
+                text: data.message || 'Invalid username or password.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        }
+    })
+    .catch(error => {
+        Swal.fire({
+            title: 'Error!',
+            text: 'An unexpected error occurred. Please try again.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+    });
+});
+</script>
+
     
 </body>
 

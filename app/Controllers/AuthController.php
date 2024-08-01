@@ -14,49 +14,45 @@ class AuthController extends BaseController
     public function verifyLogin()
     {
         $userModel = new UserModel();
-        
+    
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
     
-        // Special case for admin login
-        if ($username == 'admin@gmail.com' && $password == 'admin') {
-            $session = session();
-            $sessionData = [
-                'user_id' => 1, // assuming admin ID as 1
-                'username' => $username,
-                'role' => 'admin',
-                'logged_in' => TRUE
-            ];
-            $session->set($sessionData);
+        // Retrieve user by username
+        $user = $userModel->where('email', $username)->first();
     
-            return redirect()->to('/dashboard'); // Redirect to dashboard or home page
-        }
-    
-        // Normal user login
-        $user = $userModel->where('username', $username)->first();
-        
         if ($user) {
-            if ($password == $user['password']) { // Direct comparison without hashing
-                // Login successful
-                $session = session();
-                $sessionData = [
-                    'user_id' => $user['user_id'],
-                    'username' => $user['username'],
-                    'role' => $user['role'],
-                    'logged_in' => TRUE
-                ];
-                $session->set($sessionData);
-                
-                return redirect()->to('/dashboard'); // Redirect to dashboard or home page
+            // Verify hashed password
+            if (password_verify($password, $user['password'])) {
+                // Check if user is a super_admin
+                if ($user['role'] === 'super_admin') {
+                    // Password and role are correct
+                    $session = session();
+                    $sessionData = [
+                        'user_id' => $user['user_id'],
+                        'username' => $user['username'],
+                        'role' => $user['role'],
+                        'logged_in' => TRUE
+                    ];
+                    $session->set($sessionData);
+    
+                    return $this->response->setJSON(['success' => true]);
+                } else {
+                    // Role is not super_admin
+                    return $this->response->setJSON(['success' => false, 'message' => 'Access restricted to super_admin only']);
+                }
             } else {
                 // Password doesn't match
-                return redirect()->back()->withInput()->with('error', 'Invalid password');
+                return $this->response->setJSON(['success' => false, 'message' => 'Invalid password']);
             }
         } else {
             // User not found
-            return redirect()->back()->withInput()->with('error', 'User not found');
+            return $this->response->setJSON(['success' => false, 'message' => 'User not found']);
         }
     }
+    
+
+    
     
 
     public function logout()
@@ -64,5 +60,27 @@ class AuthController extends BaseController
         $session = session();
         $session->destroy();
         return redirect()->to('/login');
+    }
+    public function register()
+    {
+        // Display the registration form
+        return view('auth-register');
+    }
+    public function registerUser()
+    {
+        $userModel = new UserModel();
+
+        $data = [
+            'username' => $this->request->getPost('username'),
+            'email' => $this->request->getPost('email'),
+            'password' => password_hash($this->request->getPost('password'), PASSWORD_BCRYPT),
+            'mobile_number' => $this->request->getPost('mobile_number')
+        ];
+
+        if ($userModel->save($data)) {
+            return $this->response->setJSON(['success' => true]);
+        } else {
+            return $this->response->setJSON(['success' => false]);
+        }
     }
 }
