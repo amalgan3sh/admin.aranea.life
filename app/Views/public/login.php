@@ -125,7 +125,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
                 icon: 'success',
                 confirmButtonText: 'OK'
             }).then(() => {
-                window.location.href = '/dashboard'; // Redirect to dashboard
+                window.location.href = 'select_dashboard_type'; // Redirect to dashboard
             });
         } else {
             Swal.fire({

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers;
 
 use App\Models\UserModel;
@@ -13,59 +14,69 @@ class AuthController extends BaseController
 
     public function verifyLogin()
     {
-        $userModel = new UserModel();
-    
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
-    
-        // Retrieve user by username
-        $user = $userModel->where('email', $username)->first();
-    
-        if ($user) {
-            // Verify hashed password
-            if (password_verify($password, $user['password'])) {
-                // Check if user is a super_admin
-                if ($user['role'] === 'super_admin') {
-                    // Password and role are correct
-                    $session = session();
-                    $sessionData = [
-                        'user_id' => $user['user_id'],
-                        'username' => $user['username'],
-                        'role' => $user['role'],
-                        'logged_in' => TRUE
-                    ];
-                    $session->set($sessionData);
-    
-                    return $this->response->setJSON(['success' => true]);
-                } else {
-                    // Role is not super_admin
-                    return $this->response->setJSON(['success' => false, 'message' => 'Access restricted to super_admin only']);
-                }
-            } else {
-                // Password doesn't match
-                return $this->response->setJSON(['success' => false, 'message' => 'Invalid password']);
-            }
-        } else {
-            // User not found
-            return $this->response->setJSON(['success' => false, 'message' => 'User not found']);
-        }
-    }
-    
 
-    
-    
+        $user = $this->getUserByUsername($username);
+
+        if ($user && $this->verifyPassword($password, $user['password'])) {
+            if ($this->isSuperAdmin($user)) {
+                $this->setUserSession($user);
+                return $this->jsonResponse(['success' => true]);
+            } else {
+                return $this->jsonResponse(['success' => false, 'message' => 'Access restricted to super_admin only']);
+            }
+        }
+
+        return $this->jsonResponse(['success' => false, 'message' => 'Invalid username or password']);
+    }
+
+    private function getUserByUsername($username)
+    {
+        $userModel = new UserModel();
+        return $userModel->where('email', $username)->first();
+    }
+
+    private function verifyPassword($inputPassword, $storedPassword)
+    {
+        return password_verify($inputPassword, $storedPassword);
+    }
+
+    private function isSuperAdmin($user)
+    {
+        return $user['role'] === 'super_admin';
+    }
+
+    private function setUserSession($user)
+    {
+        $session = session();
+        $sessionData = [
+            'user_id' => $user['user_id'],
+            'username' => $user['username'],
+            'role' => $user['role'],
+            'logged_in' => true,
+            'active' => true  // Assuming you want to set the 'active' status here
+        ];
+        $session->set($sessionData);
+    }
+
+    private function jsonResponse($data)
+    {
+        return $this->response->setJSON($data);
+    }
 
     public function logout()
     {
-        $session = session();
-        $session->destroy();
-        return redirect()->to('/login');
+        session()->destroy();
+        return redirect()->to('/');
     }
+
     public function register()
     {
         // Display the registration form
-        return view('auth-register');
+        return view('public/auth-register');
     }
+
     public function registerUser()
     {
         $userModel = new UserModel();
@@ -78,9 +89,9 @@ class AuthController extends BaseController
         ];
 
         if ($userModel->save($data)) {
-            return $this->response->setJSON(['success' => true]);
+            return $this->jsonResponse(['success' => true]);
         } else {
-            return $this->response->setJSON(['success' => false]);
+            return $this->jsonResponse(['success' => false]);
         }
     }
 }
