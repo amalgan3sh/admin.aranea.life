@@ -63,6 +63,28 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- IES Dashboard Card -->
+                                        <div class="col-md-6 mb-3">
+                                            <div class="card">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-shipping-fast fa-3x mb-3 text-danger"></i>
+                                                    <h5 class="card-title">IES Dashboard</h5>
+                                                    <p class="card-text">Access the IES dashboard</p>
+                                                    <a href="https://demo.lakshmipharmaceuticals.com/" class="btn btn-danger">Go to IES Dashboard</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Pre-Distributor Dashboard Card -->
+                                        <div class="col-md-6 mb-3">
+                                            <div class="card">
+                                                <div class="card-body text-center">
+                                                    <i class="fas fa-truck-loading fa-3x mb-3 text-warning"></i>
+                                                    <h5 class="card-title">Pre-Distributor Dashboard</h5>
+                                                    <p class="card-text">Access the Pre-Distributor dashboard</p>
+                                                    <a href="https://user.lakshmipharmaceuticals.com/" class="btn btn-warning">Go to Pre-Distributor</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div><!--end card-body-->
                                 <div class="card-body bg-light-alt text-center">
