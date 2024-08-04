@@ -17,8 +17,8 @@
 
          <!-- App css -->
 
-         <link href="assets/css/bootstrap-dark.min.css" rel="stylesheet" type="text/css" />
-         <link href="assets/css/app-dark.min.css" rel="stylesheet" type="text/css" />
+         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+         <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
          <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 
 

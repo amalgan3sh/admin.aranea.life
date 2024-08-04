@@ -16,7 +16,27 @@ class App extends BaseConfig
      *
      * E.g., http://example.com/
      */
-    public string $baseURL = 'http://localhost:8080/';
+    public $baseURL = '';
+
+    // Fetch the site URL dynamically
+    public function __construct() {
+        parent::__construct();
+
+        // Check if it's running on HTTPS
+        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
+
+        // Get the host name
+        $host = $_SERVER['HTTP_HOST'];
+
+        // Set the base URL based on the host name
+        if (strpos($host, 'admin.aranea.in') !== false) {
+            $this->baseURL = $protocol . "://" . $host;
+        } elseif (strpos($host, 'localhost') !== false) {
+            $this->baseURL = $protocol . "://" . $host;
+        } else {
+            $this->baseURL = $protocol . "://" . $host . "/admin.aranea.in";
+        }
+    }
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
@@ -41,9 +61,6 @@ class App extends BaseConfig
      * from your site URIs, set this variable to an empty string.
      */
     public string $indexPage = '';
-
-    public $sessionDriver = 'CodeIgniter\Session\Handlers\FileHandler';
-
 
     /**
      * --------------------------------------------------------------------------
