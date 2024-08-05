@@ -70,16 +70,86 @@ class AdminController extends BaseController
         $recentActivities = $surveyModel->orderBy('created_at', 'DESC')
                                         ->paginate($perPage, 'default', $page);
 
+        // Fetch most interested districts with pagination
+        $interestedDistricts = $surveyModel->select('interested_district, COUNT(*) as count')
+                                           ->groupBy('interested_district')
+                                           ->orderBy('count', 'DESC')
+                                           ->paginate($perPage, 'districts', $page);
+
+        // Fetch browser usage and traffic reports (simulated from survey data)
+        
+
         $pager = $surveyModel->pager;
 
         $data['recent_activities'] = $recentActivities;
+        $data['interested_districts'] = $interestedDistricts;
         $data['pager'] = $pager;
         $data['current_page'] = $page;
+        $data['recent_entries_count'] = $surveyModel->where('created_at >=', date('Y-m-d H:i:s', strtotime('-1 day')))->countAllResults();
         $data['per_page'] = $perPage;
+
+        // Fetch data from the database with corrected syntax
+        $data['villaSessions'] = $surveyModel->where('house_type', 'Villa')->countAllResults();
+        $data['farmHouseSessions'] = $surveyModel->where('house_type', 'Farm House')->countAllResults();
+        $data['resortSessions'] = $surveyModel->where('resort_type IS NOT NULL', null, false)->countAllResults();
+        $data['anyOtherSessions'] = $surveyModel->whereNotIn('house_type', ['Villa', 'Farm House'])->countAllResults();
+
+        // Simulating previous period data for demonstration
+        $data['prevVillaSessions'] = ['sessions' => 56, 'percentage' => 28];
+        $data['prevFarmHouseSessions'] = ['sessions' => 98, 'percentage' => 37];
+        $data['prevResortSessions'] = ['sessions' => 45, 'percentage' => 22];
+        $data['prevAnyOtherSessions'] = ['sessions' => 25, 'percentage' => 13];
+
+        // Fetch data from the database
+        $data['villaSessions'] = $surveyModel->where('house_type', 'Villa')->countAllResults();
+        $data['farmHouseSessions'] = $surveyModel->where('house_type', 'Farm House')->countAllResults();
+        $data['resortSessions'] = $surveyModel->where('resort_type IS NOT NULL', null, false)->countAllResults();
+        $data['anyOtherSessions'] = $surveyModel->whereNotIn('house_type', ['Villa', 'Farm House'])->countAllResults();
+
+        // Simulating previous period data for demonstration
+        $data['prevVillaSessions'] = ['sessions' => 56, 'percentage' => 28];
+        $data['prevFarmHouseSessions'] = ['sessions' => 98, 'percentage' => 37];
+        $data['prevResortSessions'] = ['sessions' => 45, 'percentage' => 22];
+        $data['prevAnyOtherSessions'] = ['sessions' => 25, 'percentage' => 13];
+
+        // Fetch demographic data from the existing table
+        $data['demographics'] = $this->getDemographics($surveyModel);
+
     
         // Load header and dashboard views
         echo view('holidaycity/admin_header');
         echo view('holidaycity/admin_dashboard', $data);
+    }
+
+    private function getDemographics($surveyModel)
+    {
+        $db = \Config\Database::connect();
+
+        // Query to get gender distribution
+        $genderQuery = $db->query("
+            SELECT 
+                gender AS category,
+                COUNT(*) AS count,
+                (COUNT(*) * 100 / (SELECT COUNT(*) FROM survey_responses)) AS percentage
+            FROM survey_responses
+            GROUP BY gender
+        ");
+
+        // Query to get age distribution
+        $ageQuery = $db->query("
+            SELECT 
+                CASE 
+                    WHEN age BETWEEN 18 AND 25 THEN '18-25 Age Group' 
+                    WHEN age BETWEEN 26 AND 35 THEN '26-35 Age Group' 
+                    ELSE 'Other Age Group'
+                END AS category,
+                COUNT(*) AS count,
+                (COUNT(*) * 100 / (SELECT COUNT(*) FROM survey_responses)) AS percentage
+            FROM survey_responses
+            GROUP BY category
+        ");
+
+        return array_merge($genderQuery->getResultArray(), $ageQuery->getResultArray());
     }
     
     private function getAverageAge($surveyModel)

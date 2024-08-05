@@ -72,7 +72,7 @@
                                         <div class="card-body">
                                             <div class="row d-flex justify-content-center">
                                                 <div class="col-9">
-                                                    <p class="text-dark mb-0 fw-semibold">Interested in Additional Income</p>
+                                                    <p class="text-dark mb-0 fw-semibold">Income intrest</p>
                                                     <h3 class="my-1 font-20 fw-bold"><?= $interested_in_income ?? 'N/A'; ?></h3>
                                                     <p class="mb-0 text-truncate text-muted"><span class="text-success"><i class="mdi mdi-trending-up"></i> Total Interested</span></p>
                                                 </div>
@@ -247,46 +247,52 @@
                             </div><!--end card--> 
                         </div><!--end col-->
                         <div class="col-lg-4">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="row align-items-center">
-                                        <div class="col">                      
-                                            <h4 class="card-title">Most Interested Districts</h4>                      
-                                        </div><!--end col-->
-                                        <div class="col-auto"> 
-                                            <div class="dropdown">
-                                                <a href="#" class="btn btn-sm btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row align-items-center">
+                                    <div class="col">                      
+                                        <h4 class="card-title">Most Interested Districts</h4>                      
+                                    </div><!--end col-->
+                                    <div class="col-auto"> 
+                                        <div class="dropdown">
+                                            <a href="#" class="btn btn-sm btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Today<i class="las la-angle-down ms-1"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="#">Today</a>
-                                                    <a class="dropdown-item" href="#">Yesterday</a>
-                                                    <a class="dropdown-item" href="#">Last Week</a>
-                                                </div>
-                                            </div>               
-                                        </div><!--end col-->
-                                    </div>  <!--end row-->                                  
-                                </div><!--end card-header-->                                
-                                <div class="card-body">
-                                    <ul class="list-group custom-list-group">
-                                        <?php foreach ($interested_districts as $district): ?>
-                                        <li class="list-group-item align-items-center d-flex justify-content-between">
-                                            <div class="media">
-                                                <img src="assets/images/small/rgb.svg" height="30" class="me-3 align-self-center rounded" alt="<?php echo $district['interested_district']; ?>">
-                                                <div class="media-body align-self-center"> 
-                                                    <h6 class="m-0"><?php echo $district['interested_district']; ?></h6>
-                                                    <p class="mb-0 text-muted"><?php echo $district['count']; ?> Enquiries</p>                                                                                           
-                                                </div><!--end media body-->
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <a class="dropdown-item" href="#">Today</a>
+                                                <a class="dropdown-item" href="#">Yesterday</a>
+                                                <a class="dropdown-item" href="#">Last Week</a>
                                             </div>
-                                            <div class="align-self-center">
-                                                <a href="" class="btn btn-sm btn-soft-primary"><?php echo $district['count']; ?> <i class="las la-external-link-alt font-15"></i></a>  
-                                            </div>                                            
-                                        </li>
-                                        <?php endforeach; ?>
-                                    </ul>                                
-                                </div><!--end card-body--> 
-                            </div><!--end card--> 
-                            <div class="card">
+                                        </div>               
+                                    </div><!--end col-->
+                                </div><!--end row-->                                  
+                            </div><!--end card-header-->                                
+                            <div class="card-body">
+                                <ul class="list-group custom-list-group">
+                                    <?php foreach ($interested_districts as $district): ?>
+                                    <li class="list-group-item align-items-center d-flex justify-content-between">
+                                        <div class="media">
+                                            <img src="assets/images/small/rgb.svg" height="30" class="me-3 align-self-center rounded" alt="<?php echo $district['interested_district']; ?>">
+                                            <div class="media-body align-self-center"> 
+                                                <h6 class="m-0"><?php echo $district['interested_district']; ?></h6>
+                                                <p class="mb-0 text-muted"><?php echo $district['count']; ?> Enquiries</p>                                                                                           
+                                            </div><!--end media body-->
+                                        </div>
+                                        <div class="align-self-center">
+                                            <a href="" class="btn btn-sm btn-soft-primary"><?php echo $district['count']; ?> <i class="las la-external-link-alt font-15"></i></a>  
+                                        </div>                                            
+                                    </li>
+                                    <?php endforeach; ?>
+                                </ul> 
+
+                                <!-- Pagination for Most Interested Districts -->
+                                <nav aria-label="Page navigation">
+                                    <?= $pager->links('districts', 'bootstrap_pagination') ?>
+                                </nav><!--end nav-->
+                            </div><!--end card-body--> 
+                        </div><!--end card--> 
+
+                        <div class="card">
                             <div class="card-body">
                                 <div class="d-flex">
                                     <h2 class="m-0 align-self-center"><?php echo $recent_entries_count; ?></h2>
@@ -299,60 +305,58 @@
                                     </div>
                                 </div>
                             </div><!--end card-body-->
-                            </div><!--end card-->
+                        </div><!--end card-->
+
                         </div> <!--end col--> 
                                                 
                         
                         <div class="col-lg-4">
                         <div class="card">   
-    <div class="card-header">
-        <div class="row align-items-center">
-            <div class="col">                      
-                <h4 class="card-title">Activity</h4>                      
-            </div><!--end col-->
-            <div class="col-auto"> 
-                <div class="dropdown">
-                    <a href="#" class="btn btn-sm btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        All<i class="las la-angle-down ms-1"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end">
-                        <a class="dropdown-item" href="#">Purchases</a>
-                        <a class="dropdown-item" href="#">Emails</a>
-                    </div>
-                </div>          
-            </div><!--end col-->
-        </div>  <!--end row-->                                  
-    </div><!--end card-header-->                                              
-    <div class="card-body p-0"> 
-        <div class="p-3" data-simplebar style="height: 400px;">
-            <div class="activity">
-                <?php foreach ($recent_activities as $activity): ?>
-                <div class="activity-info">
-                    <div class="icon-info-activity">
-                        <i class="las la-user-clock bg-soft-primary"></i>
-                    </div>
-                    <div class="activity-info-text">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <p class="text-muted mb-0 font-13 w-75">
-                                <span><?php echo $activity['name']; ?></span> 
-                                <?php echo $activity['who_are_you']; ?> from 
-                                <a href="mailto:<?php echo $activity['email']; ?>"><?php echo $activity['email']; ?></a> 
-                                at <?php echo $activity['current_residential_location']; ?>
-                            </p>
-                            <small class="text-muted"><?php echo date('d M Y, h:i A', strtotime($activity['created_at'])); ?></small>
-                        </div>    
-                    </div>
-                </div> 
-                <?php endforeach; ?>                                                                                                                    
-            </div><!--end activity-->
-        </div><!--end analytics-dash-activity-->
+                            <div class="card-header">
+                                <div class="row align-items-center">
+                                    <div class="col">                      
+                                        <h4 class="card-title">Activity</h4>                      
+                                    </div><!--end col-->
+                                    <div class="col-auto"> 
+                                        <div class="dropdown">
+                                            <a href="#" class="btn btn-sm btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                All<i class="las la-angle-down ms-1"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <a class="dropdown-item" href="#">Purchases</a>
+                                                <a class="dropdown-item" href="#">Emails</a>
+                                            </div>
+                                        </div>          
+                                    </div><!--end col-->
+                                </div>  <!--end row-->                                  
+                            </div><!--end card-header-->                                              
+                            <div class="card-body p-0"> 
+                                <div class="p-3" data-simplebar style="height: 400px;">
+                                    <div class="activity">
+                                    <?php foreach ($recent_activities as $activity): ?>
+                                        <div class="activity-info">
+                                            <div class="icon-info-activity">
+                                                <i class="las la-user-clock bg-soft-primary"></i>
+                                            </div>
+                                            <div class="activity-info-text">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <p class="text-muted mb-0 font-13 w-75">
+                                                        <span><?php echo $activity['name']; ?></span> has completed the survey on 
+                                                        <small class="text-muted"><?php echo date('d M Y, h:i A', strtotime($activity['created_at'])); ?></small>
+                                                    </p>
+                                                </div>    
+                                            </div>
+                                        </div> 
+                                        <?php endforeach; ?>                                                                                                                    
+                                    </div><!--end activity-->
+                                </div><!--end analytics-dash-activity-->
 
-        <!-- Pagination -->
-        <nav aria-label="Page navigation">
-            <?= $pager->links('default', 'bootstrap_pagination') ?>
-        </nav><!--end nav-->
-    </div><!--end card-body-->                                     
-</div><!--end card-->
+                                <!-- Pagination -->
+                                <nav aria-label="Page navigation">
+                                    <?= $pager->links('default', 'bootstrap_pagination') ?>
+                                </nav><!--end nav-->
+                            </div><!--end card-body-->                                     
+                        </div><!--end card-->
                         </div><!--end col--> 
                        
                     </div><!--end row-->
@@ -362,7 +366,7 @@
                                 <div class="card-header">
                                     <div class="row align-items-center">
                                         <div class="col">                      
-                                            <h4 class="card-title">Browser Used & Traffic Reports</h4>                      
+                                            <h4 class="card-title">Response Analytics</h4>                      
                                         </div><!--end col-->                                        
                                     </div>  <!--end row-->                                  
                                 </div><!--end card-header-->
@@ -371,105 +375,83 @@
                                         <table class="table mb-0">
                                             <thead class="thead-light">
                                                 <tr>
-                                                    <th class="border-top-0">Channel</th>
-                                                    <th class="border-top-0">Sessions</th>
-                                                    <th class="border-top-0">Prev.Period</th>
-                                                    <th class="border-top-0">% Change</th>
-                                                </tr><!--end tr-->
+                                                    <th class="border-top-0">Survey Type</th>
+                                                    <th class="border-top-0">Current Responses</th>
+                                                    <th class="border-top-0">Previous Responses</th>
+                                                    <th class="border-top-0">Percentage Change</th>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>                                                        
-                                                    <td><a href="" class="text-primary">Organic search</a></td>
-                                                    <td>10853<small class="text-muted">(52%)</small></td>
-                                                    <td>566<small class="text-muted">(92%)</small></td>
-                                                    <td> 52.80% <i class="fas fa-caret-up text-success font-16"></i></td>
-                                                </tr><!--end tr-->     
-                                                <tr>                                                        
-                                                    <td><a href="" class="text-primary">Direct</a></td>
-                                                    <td>2545<small class="text-muted">(47%)</small></td>
-                                                    <td>498<small class="text-muted">(81%)</small></td>
-                                                    <td> -17.20% <i class="fas fa-caret-down text-danger font-16"></i></td>
-                                                    
-                                                </tr><!--end tr-->    
-                                                <tr>                                                        
-                                                    <td><a href="" class="text-primary">Referal</a></td>
-                                                    <td>1836<small class="text-muted">(38%)</small></td> 
-                                                    <td>455<small class="text-muted">(74%)</small></td>
-                                                    <td> 41.12% <i class="fas fa-caret-up text-success font-16"></i></td>
-                                                    
-                                                </tr><!--end tr-->    
-                                                <tr>                                                        
-                                                    <td><a href="" class="text-primary">Email</a></td>
-                                                    <td>1958<small class="text-muted">(31%)</small></td> 
-                                                    <td>361<small class="text-muted">(61%)</small></td>
-                                                    <td> -8.24% <i class="fas fa-caret-down text-danger font-16"></i></td>
-                                                </tr><!--end tr-->    
-                                                <tr>                                                        
-                                                    <td><a href="" class="text-primary">Social</a></td>
-                                                    <td>1566<small class="text-muted">(26%)</small></td> 
-                                                    <td>299<small class="text-muted">(49%)</small></td>
-                                                    <td> 29.33% <i class="fas fa-caret-up text-success"></i></td>
-                                                </tr><!--end tr-->                            
+                                                <tr>
+                                                    <td><a href="" class="text-primary">Villa</a></td>
+                                                    <td><?= $villaSessions ?><small class="text-muted">(30%)</small></td>
+                                                    <td><?= $prevVillaSessions['sessions'] ?><small class="text-muted">(<?= $prevVillaSessions['percentage'] ?>%)</small></td>
+                                                    <td> <?= round((($villaSessions - $prevVillaSessions['sessions']) / $prevVillaSessions['sessions']) * 100, 2) ?>% <i class="fas fa-caret-up text-success font-16"></i></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="" class="text-primary">Farm House</a></td>
+                                                    <td><?= $farmHouseSessions ?><small class="text-muted">(40%)</small></td>
+                                                    <td><?= $prevFarmHouseSessions['sessions'] ?><small class="text-muted">(<?= $prevFarmHouseSessions['percentage'] ?>%)</small></td>
+                                                    <td> <?= round((($farmHouseSessions - $prevFarmHouseSessions['sessions']) / $prevFarmHouseSessions['sessions']) * 100, 2) ?>% <i class="fas fa-caret-up text-success font-16"></i></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="" class="text-primary">Resort</a></td>
+                                                    <td><?= $resortSessions ?><small class="text-muted">(24%)</small></td>
+                                                    <td><?= $prevResortSessions['sessions'] ?><small class="text-muted">(<?= $prevResortSessions['percentage'] ?>%)</small></td>
+                                                    <td> <?= round((($resortSessions - $prevResortSessions['sessions']) / $prevResortSessions['sessions']) * 100, 2) ?>% <i class="fas fa-caret-up text-success font-16"></i></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="" class="text-primary">Any Other</a></td>
+                                                    <td><?= $anyOtherSessions ?><small class="text-muted">(14%)</small></td>
+                                                    <td><?= $prevAnyOtherSessions['sessions'] ?><small class="text-muted">(<?= $prevAnyOtherSessions['percentage'] ?>%)</small></td>
+                                                    <td> <?= round((($anyOtherSessions - $prevAnyOtherSessions['sessions']) / $prevAnyOtherSessions['sessions']) * 100, 2) ?>% <i class="fas fa-caret-up text-success font-16"></i></td>
+                                                </tr>
                                             </tbody>
-                                        </table> <!--end table-->                                               
+                                        </table>                                              
                                     </div><!--end /div-->
                                 </div><!--end card-body--> 
                             </div><!--end card--> 
                         </div> <!--end col-->   
-                        
+
                         <div class="col-lg-6">
                             <div class="card">
                                 <div class="card-header">
                                     <div class="row align-items-center">
                                         <div class="col">                      
-                                            <h4 class="card-title">Browser Used & Traffic Reports</h4>                      
+                                            <h4 class="card-title">Respondent Demographics</h4>                      
                                         </div><!--end col-->                                        
                                     </div>  <!--end row-->                                  
                                 </div><!--end card-header-->
                                 <div class="card-body">
                                     <div class="table-responsive browser_users">
-                                        <table class="table mb-0">
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th class="border-top-0">Browser</th>
-                                                    <th class="border-top-0">Sessions</th>
-                                                    <th class="border-top-0">Bounce Rate</th>
-                                                    <th class="border-top-0">Transactions</th>
-                                                </tr><!--end tr-->
-                                            </thead>
-                                            <tbody>
-                                                <tr>                                                        
-                                                    <td><img src="assets/images/logos/chrome.png" alt="" height="16" class="me-2">Chrome</td>
-                                                    <td>10853<small class="text-muted">(52%)</small></td>                                   
-                                                    <td> 52.80%</td>
-                                                    <td>566<small class="text-muted">(92%)</small></td>
-                                                </tr><!--end tr-->     
-                                                <tr>                                                        
-                                                    <td><img src="assets/images/logos/micro-edge.png" alt="" height="16" class="me-2">Microsoft Edge</td>
-                                                    <td>2545<small class="text-muted">(47%)</small></td>                                   
-                                                    <td> 47.54%</td>
-                                                    <td>498<small class="text-muted">(81%)</small></td>
-                                                </tr><!--end tr-->    
-                                                <tr>                                                        
-                                                    <td><img src="assets/images/logos/in-explorer.png" alt="" height="16" class="me-2">Internet-Explorer</td>
-                                                    <td>1836<small class="text-muted">(38%)</small></td>                                   
-                                                    <td> 41.12%</td>
-                                                    <td>455<small class="text-muted">(74%)</small></td>
-                                                </tr><!--end tr-->    
-                                                <tr>                                                        
-                                                    <td><img src="assets/images/logos/opera.png" alt="" height="16" class="me-2">Opera</td>
-                                                    <td>1958<small class="text-muted">(31%)</small></td>                                   
-                                                    <td> 36.82%</td>
-                                                    <td>361<small class="text-muted">(61%)</small></td>
-                                                </tr><!--end tr-->    
-                                                <tr>                                                        
-                                                    <td><img src="assets/images/logos/chrome.png" alt="" height="16" class="me-2">Chrome</td>
-                                                    <td>10853<small class="text-muted">(52%)</small></td>                                   
-                                                    <td> 52.80%</td>
-                                                    <td>566<small class="text-muted">(92%)</small></td>
-                                                </tr><!--end tr-->                             
-                                            </tbody>
-                                        </table> <!--end table-->                                               
+                                    <table class="table mb-0">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th class="border-top-0">Category</th>
+                                                <th class="border-top-0">Count</th>
+                                                <th class="border-top-0">Percentage</th>
+                                                <th class="border-top-0">Change</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($demographics as $demographic): ?>
+                                            <tr>
+                                                <td><?= $demographic['category'] ?></td>
+                                                <td><?= $demographic['count'] ?><small class="text-muted">(<?= round($demographic['percentage'], 2) ?>%)</small></td>
+                                                <td><?= round($demographic['percentage'], 2) ?>%</td>
+                                                <td> <!-- Assuming you have logic to determine change -->
+                                                    <?php
+                                                    $change = rand(5, 20); // Random change for demonstration
+                                                    $direction = rand(0, 1) ? 'up' : 'down';
+                                                    $class = $direction == 'up' ? 'text-success' : 'text-danger';
+                                                    $icon = $direction == 'up' ? 'fa-caret-up' : 'fa-caret-down';
+                                                    ?>
+                                                    <?= $change ?>% <i class="fas <?= $icon ?> <?= $class ?> font-16"></i>
+                                                </td>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>                                      
                                     </div><!--end /div--> 
                                 </div><!--end card-body--> 
                             </div><!--end card--> 
@@ -526,8 +508,8 @@
                 <footer class="footer text-center text-sm-start">
                     &copy; <script>
                         document.write(new Date().getFullYear())
-                    </script> Metrica <span class="text-muted d-none d-sm-inline-block float-end">Crafted with <i
-                            class="mdi mdi-heart text-danger"></i> by Mannatthemes</span>
+                    </script> Aranea <span class="text-muted d-none d-sm-inline-block float-end">Crafted By <i
+                            class="mdi mdi-heart text-danger"></i> by SpyderHub</span>
                 </footer>
                 <!-- end Footer -->                
                 <!--end footer-->
