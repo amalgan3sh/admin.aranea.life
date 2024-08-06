@@ -536,8 +536,8 @@
             name: "House Type Count",
             data: <?php echo json_encode($house_counts); ?>
         }, {
-            name: "Income Interest Count",
-            data: <?php echo json_encode($income_interest_counts); ?>
+            name: "Gender Distribution Count",
+            data: <?= json_encode($gender_counts); ?>
         }],
         chart: {
             height: 330,

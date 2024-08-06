@@ -37,6 +37,7 @@ class AdminController extends BaseController
         }
     
         $surveyModel = new SurveyModel();
+        $db = \Config\Database::connect();
         $data = [];
     
         // Fetch general data
@@ -52,6 +53,9 @@ class AdminController extends BaseController
     
         // Fetch gender data
         list($data['male_count'], $data['female_count'], $data['other_count'], $data['male_percentage'], $data['female_percentage'], $data['other_percentage']) = $this->getGenderData($surveyModel, $data['total_responses']);
+
+        list($data['gender_labels'], $data['gender_counts']) = $this->getGenderChartData($surveyModel);
+
     
         // Fetch recent entries count
         $data['recent_entries_count'] = $surveyModel->where('created_at >=', date('Y-m-d H:i:s', strtotime('-1 day')))->countAllResults();
@@ -61,60 +65,44 @@ class AdminController extends BaseController
     
         // Example of current online users, assuming it comes from another source
         $data['current_online'] = 80;
-
+    
         // Pagination settings
         $perPage = 5; // Number of entries per page
         $page = $this->request->getVar('page') ?: 1; // Get the current page or default to 1
-
+    
         // Fetch recent survey entries as activities with pagination
         $recentActivities = $surveyModel->orderBy('created_at', 'DESC')
                                         ->paginate($perPage, 'default', $page);
-
+    
         // Fetch most interested districts with pagination
         $interestedDistricts = $surveyModel->select('interested_district, COUNT(*) as count')
                                            ->groupBy('interested_district')
                                            ->orderBy('count', 'DESC')
                                            ->paginate($perPage, 'districts', $page);
-
-        // Fetch browser usage and traffic reports (simulated from survey data)
-        
-
+    
         $pager = $surveyModel->pager;
-
+    
         $data['recent_activities'] = $recentActivities;
         $data['interested_districts'] = $interestedDistricts;
         $data['pager'] = $pager;
         $data['current_page'] = $page;
         $data['recent_entries_count'] = $surveyModel->where('created_at >=', date('Y-m-d H:i:s', strtotime('-1 day')))->countAllResults();
         $data['per_page'] = $perPage;
-
+    
         // Fetch data from the database with corrected syntax
         $data['villaSessions'] = $surveyModel->where('house_type', 'Villa')->countAllResults();
         $data['farmHouseSessions'] = $surveyModel->where('house_type', 'Farm House')->countAllResults();
         $data['resortSessions'] = $surveyModel->where('resort_type IS NOT NULL', null, false)->countAllResults();
         $data['anyOtherSessions'] = $surveyModel->whereNotIn('house_type', ['Villa', 'Farm House'])->countAllResults();
-
+    
         // Simulating previous period data for demonstration
         $data['prevVillaSessions'] = ['sessions' => 56, 'percentage' => 28];
         $data['prevFarmHouseSessions'] = ['sessions' => 98, 'percentage' => 37];
         $data['prevResortSessions'] = ['sessions' => 45, 'percentage' => 22];
         $data['prevAnyOtherSessions'] = ['sessions' => 25, 'percentage' => 13];
-
-        // Fetch data from the database
-        $data['villaSessions'] = $surveyModel->where('house_type', 'Villa')->countAllResults();
-        $data['farmHouseSessions'] = $surveyModel->where('house_type', 'Farm House')->countAllResults();
-        $data['resortSessions'] = $surveyModel->where('resort_type IS NOT NULL', null, false)->countAllResults();
-        $data['anyOtherSessions'] = $surveyModel->whereNotIn('house_type', ['Villa', 'Farm House'])->countAllResults();
-
-        // Simulating previous period data for demonstration
-        $data['prevVillaSessions'] = ['sessions' => 56, 'percentage' => 28];
-        $data['prevFarmHouseSessions'] = ['sessions' => 98, 'percentage' => 37];
-        $data['prevResortSessions'] = ['sessions' => 45, 'percentage' => 22];
-        $data['prevAnyOtherSessions'] = ['sessions' => 25, 'percentage' => 13];
-
+    
         // Fetch demographic data from the existing table
-        $data['demographics'] = $this->getDemographics($surveyModel);
-
+        $data['demographics'] = $this->getDemographics($db);
     
         // Load header and dashboard views
         echo view('holidaycity/admin_header');
@@ -235,5 +223,21 @@ class AdminController extends BaseController
         } else {
             return $this->redirectUnauthorized();
         }
+    }
+
+    private function getGenderChartData($surveyModel)
+    {
+        $genderData = $surveyModel->select('gender, COUNT(*) as count')
+                                ->groupBy('gender')
+                                ->findAll();
+
+        $genderLabels = [];
+        $genderCounts = [];
+        foreach ($genderData as $gender) {
+            $genderLabels[] = $gender['gender'];
+            $genderCounts[] = $gender['count'];
+        }
+
+        return [$genderLabels, $genderCounts];
     }
 }

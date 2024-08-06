@@ -20,12 +20,21 @@
      <link href="<?= base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet" type="text/css" />
      <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
      <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+     <link href="assets/css/loader.css" rel="stylesheet" type="text/css" />
+     
 
 </head>
 
 <body id="body" class="auth-page" style="background-image: url('assets/images/p-1.png'); background-size: cover; background-position: center center;">
    <!-- Log In page -->
-    <div class="container-md">
+   <div id="loader-wrapper">
+      <div id="loader"></div>
+      <div class="loader-section section-left"></div>
+      <div class="loader-section section-right"></div>
+   </div>
+   
+
+    <div class="container-md" id="content">
         <div class="row vh-100 d-flex justify-content-center">
             <div class="col-12 align-self-center">
                 <div class="card-body">
@@ -121,12 +130,15 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
         if (data.success) {
             Swal.fire({
                 title: 'Success!',
-                text: 'You have logged in successfully.',
+                text: 'You have logged in successfully. Redirecting...',
                 icon: 'success',
-                confirmButtonText: 'OK'
-            }).then(() => {
-                window.location.href = 'select_dashboard_type'; // Redirect to dashboard
+                showConfirmButton: false,
+                timer: 1000 // Redirect after 2 seconds
             });
+
+            setTimeout(() => {
+                window.location.href = 'select_dashboard_type'; // Redirect to dashboard
+            }, 2000);
         } else {
             Swal.fire({
                 title: 'Error!',
@@ -146,6 +158,8 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     });
 });
 </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="assets/js/loader.js"></script>
 
     
 </body>

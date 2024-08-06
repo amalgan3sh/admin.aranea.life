@@ -19,9 +19,14 @@
 
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="assets/css/loader.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body id="body" class="auth-page" style="background-image: url('assets/images/p-1.png'); background-size: cover; background-position: center center;">
+
+<div id="loader-wrapper">
+        <div id="loader"></div>
+    </div>
     <div class="container-md">
         <div class="row vh-100 d-flex justify-content-center">
             <div class="col-12 align-self-center">
@@ -40,53 +45,42 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="row">
-                                        <!-- Healthcare Card -->
-                                        <div class="col-md-6 mb-3">
-                                            <div class="card">
-                                                <div class="card-body text-center">
-                                                    <i class="fas fa-hospital fa-3x mb-3 text-primary"></i>
-                                                    <h5 class="card-title">Healthcare</h5>
-                                                    <p class="card-text">Access the Healthcare dashboard</p>
-                                                    <a href="<?php echo base_url('healthcare_dashboard') ?>" class="btn btn-primary">Go to Healthcare</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- HolidayCity Card -->
-                                        <div class="col-md-6 mb-3">
-                                            <div class="card">
-                                                <div class="card-body text-center">
-                                                    <i class="fas fa-umbrella-beach fa-3x mb-3 text-success"></i>
-                                                    <h5 class="card-title">HolidayCity</h5>
-                                                    <p class="card-text">Access the HolidayCity dashboard</p>
-                                                    <a href="<?php echo base_url('holiday_dashboard') ?>" class="btn btn-success">Go to HolidayCity</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- IES Dashboard Card -->
-                                        <div class="col-md-6 mb-3">
-                                            <div class="card">
-                                                <div class="card-body text-center">
-                                                    <i class="fas fa-shipping-fast fa-3x mb-3 text-danger"></i>
-                                                    <h5 class="card-title">IES Dashboard</h5>
-                                                    <p class="card-text">Access the IES dashboard</p>
-                                                    <a href="https://demo.lakshmipharmaceuticals.com/" class="btn btn-danger">Go to IES Dashboard</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Pre-Distributor Dashboard Card -->
-                                        <div class="col-md-6 mb-3">
-                                            <div class="card">
-                                                <div class="card-body text-center">
-                                                    <i class="fas fa-truck-loading fa-3x mb-3 text-warning"></i>
-                                                    <h5 class="card-title">Pre-Distributor Dashboard</h5>
-                                                    <p class="card-text">Access the Pre-Distributor dashboard</p>
-                                                    <a href="https://user.lakshmipharmaceuticals.com/" class="btn btn-warning">Go to Pre-Distributor</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><!--end card-body-->
+    <div class="row">
+        <!-- Healthcare Card (i1) -->
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-hospital fa-3x mb-3 text-primary"></i>
+                    <h5 class="card-title">Healthcare (i1)</h5>
+                    <p class="card-text">Access the Healthcare dashboard</p>
+                    <a href="<?php echo base_url('healthcare_dashboard') ?>" class="btn btn-primary">Go to Healthcare</a>
+                </div>
+            </div>
+        </div>
+        <!-- HolidayCity Card (i2) -->
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-umbrella-beach fa-3x mb-3 text-success"></i>
+                    <h5 class="card-title">HolidayCity (i2)</h5>
+                    <p class="card-text">Access the HolidayCity dashboard</p>
+                    <a href="<?php echo base_url('holiday_dashboard') ?>" class="btn btn-success">Go to HolidayCity</a>
+                </div>
+            </div>
+        </div>
+        <!-- Barter Card (i3) -->
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-exchange-alt fa-3x mb-3 text-info"></i>
+                    <h5 class="card-title">Barter (i3)</h5>
+                    <p class="card-text">Access the Barter dashboard</p>
+                    <a href="<?php echo base_url('barter_dashboard') ?>" class="btn btn-info">Go to Barter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
                                 <div class="card-body bg-light-alt text-center">
                                     &copy; <script>
                                         document.write(new Date().getFullYear())
@@ -106,6 +100,8 @@
     <script src="assets/libs/feather-icons/feather.min.js"></script>
     <!-- App js -->
     <script src="assets/js/app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/loader.js"></script>
 </body>
 
 </html>
