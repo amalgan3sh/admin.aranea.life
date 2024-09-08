@@ -51,7 +51,7 @@
             <div class="card">
                 <div class="card-body text-center">
                     <i class="fas fa-hospital fa-3x mb-3 text-primary"></i>
-                    <h5 class="card-title">Healthcare (i1)</h5>
+                    <h5 class="card-title">Healthcare</h5>
                     <p class="card-text">Access the Healthcare dashboard</p>
                     <a href="<?php echo base_url('healthcare_dashboard') ?>" class="btn btn-primary">Go to Healthcare</a>
                 </div>
@@ -62,7 +62,7 @@
             <div class="card">
                 <div class="card-body text-center">
                     <i class="fas fa-umbrella-beach fa-3x mb-3 text-success"></i>
-                    <h5 class="card-title">HolidayCity (i2)</h5>
+                    <h5 class="card-title">HolidayCity</h5>
                     <p class="card-text">Access the HolidayCity dashboard</p>
                     <a href="<?php echo base_url('holiday_dashboard') ?>" class="btn btn-success">Go to HolidayCity</a>
                 </div>
@@ -73,9 +73,44 @@
             <div class="card">
                 <div class="card-body text-center">
                     <i class="fas fa-exchange-alt fa-3x mb-3 text-info"></i>
-                    <h5 class="card-title">Barter (i3)</h5>
+                    <h5 class="card-title">Barter</h5>
                     <p class="card-text">Access the Barter dashboard</p>
-                    <a href="<?php echo base_url('barter_dashboard') ?>" class="btn btn-info">Go to Barter</a>
+                    <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#comingSoonModal">Go to Barter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Gods Line Card (i4) with river icon -->
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-water fa-3x mb-3 text-warning"></i> <!-- Changed icon to water -->
+                    <h5 class="card-title">Gods Line</h5>
+                    <p class="card-text">Access the Gods Line dashboard</p>
+                    <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#comingSoonModal">Go to Gods Line</a>
+                </div>
+            </div>
+        </div>
+        <!-- Community Card (i5) -->
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-users fa-3x mb-3 text-danger"></i>
+                    <h5 class="card-title">Community</h5>
+                    <p class="card-text">Access the Community dashboard</p>
+                    <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#comingSoonModal">Go to Community</a>
+                </div>
+            </div>
+        </div>
+        <!-- Import Export Solutions Card (i6) -->
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-shipping-fast fa-3x mb-3 text-secondary"></i>
+                    <h5 class="card-title">Import Export Solutions</h5>
+                    <p class="card-text">Access the IES dashboard</p>
+                    <a href="https://demo.lakshmipharmaceuticals.com/" class="btn btn-secondary">Go to Import Export</a>
                 </div>
             </div>
         </div>
@@ -93,6 +128,24 @@
             </div><!--end col-->
         </div><!--end row-->
     </div><!--end container-->
+
+    <!-- Coming Soon Modal -->
+    <div class="modal fade" id="comingSoonModal" tabindex="-1" aria-labelledby="comingSoonModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="comingSoonModalLabel">Coming Soon</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            The selected dashboard is under development and will be available soon.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- vendor js -->
     <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>

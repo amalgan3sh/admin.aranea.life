@@ -954,3 +954,133 @@ WARNING - 2024-09-08 17:03:38 --> [DEPRECATED] Creation of dynamic property App\
  7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
  8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
 INFO - 2024-09-08 17:03:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-08 17:08:14 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(225): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+WARNING - 2024-09-08 17:08:14 --> [DEPRECATED] Creation of dynamic property App\Models\SupportRequestModel::$secondDb is deprecated in APPPATH\Models\SupportRequestModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(226): App\Models\SupportRequestModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-08 17:08:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-08 17:08:22 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(225): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+WARNING - 2024-09-08 17:08:22 --> [DEPRECATED] Creation of dynamic property App\Models\SupportRequestModel::$secondDb is deprecated in APPPATH\Models\SupportRequestModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(226): App\Models\SupportRequestModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-08 17:08:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-08 17:08:24 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(225): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+WARNING - 2024-09-08 17:08:24 --> [DEPRECATED] Creation of dynamic property App\Models\SupportRequestModel::$secondDb is deprecated in APPPATH\Models\SupportRequestModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(226): App\Models\SupportRequestModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-08 17:08:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-08 17:12:33 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(225): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+WARNING - 2024-09-08 17:12:33 --> [DEPRECATED] Creation of dynamic property App\Models\SupportRequestModel::$secondDb is deprecated in APPPATH\Models\SupportRequestModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(226): App\Models\SupportRequestModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-08 17:12:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-08 18:01:07 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(225): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+WARNING - 2024-09-08 18:01:08 --> [DEPRECATED] Creation of dynamic property App\Models\SupportRequestModel::$secondDb is deprecated in APPPATH\Models\SupportRequestModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(226): App\Models\SupportRequestModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-08 18:01:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-08 18:29:14 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(225): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+WARNING - 2024-09-08 18:29:14 --> [DEPRECATED] Creation of dynamic property App\Models\SupportRequestModel::$secondDb is deprecated in APPPATH\Models\SupportRequestModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(226): App\Models\SupportRequestModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-08 18:29:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-08 18:55:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-08 18:55:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-08 18:55:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-08 19:02:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-08 19:03:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-08 19:04:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-08 19:06:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-08 19:07:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-08 19:15:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-08 19:15:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-08 19:15:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-08 19:17:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-08 19:18:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-08 19:18:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-08 19:19:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-08 19:19:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
