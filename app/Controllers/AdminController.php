@@ -4,6 +4,9 @@ namespace App\Controllers;
 
 use CodeIgniter\HTTP\RedirectResponse;
 use App\Models\SurveyModel;
+use App\Models\RecentActivityModel;
+use App\Models\SupportRequestModel;
+
 
 
 class AdminController extends BaseController
@@ -218,8 +221,14 @@ class AdminController extends BaseController
 
     public function HealthcareAdminDashboard()
     {
+        $data = [
+            'recent_activity' => (new RecentActivityModel())->getRecentActivityWithUser(),
+            'support_requests' => (new SupportRequestModel())->getSupportRequestsFromSecondDb(),
+            
+        ];
+
         if ($this->authorize('super_admin')) {
-            return view('healthcare/admin_dashboard');
+            return view('healthcare/admin_dashboard',$data);
         } else {
             return $this->redirectUnauthorized();
         }

@@ -1,0 +1,577 @@
+INFO - 2024-09-07 06:21:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 06:31:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 06:31:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 06:31:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 07:32:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 07:32:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 07:32:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 07:33:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 07:33:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 07:33:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 07:33:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 07:33:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 07:34:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 07:35:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 07:35:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 07:38:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 07:38:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 07:39:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 08:19:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 08:19:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 08:19:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 08:19:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-09-07 08:19:36 --> Error: Class "App\Controllers\RecentActivityModel" not found
+[Method: GET, Route: healthcare_dashboard]
+in APPPATH\Controllers\AdminController.php on line 222.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 2 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+ERROR - 2024-09-07 08:20:35 --> mysqli_sql_exception: Table 'aranea_holidaycity_db.recent_activity' doesn't exist in C:\xampp\htdocs\admin.aranea.life\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\admin.aranea.life\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT `recent_...', 0)
+#1 C:\xampp\htdocs\admin.aranea.life\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `recent_...')
+#2 C:\xampp\htdocs\admin.aranea.life\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `recent_...')
+#3 C:\xampp\htdocs\admin.aranea.life\system\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `recent_...', Array, false)
+#4 C:\xampp\htdocs\admin.aranea.life\app\Models\RecentActivityModel.php(18): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\admin.aranea.life\app\Controllers\AdminController.php(224): App\Models\RecentActivityModel->getRecentActivityWithUser()
+#6 C:\xampp\htdocs\admin.aranea.life\system\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+#7 C:\xampp\htdocs\admin.aranea.life\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#8 C:\xampp\htdocs\admin.aranea.life\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\admin.aranea.life\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\admin.aranea.life\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\admin.aranea.life\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 C:\xampp\htdocs\admin.aranea.life\system\rewrite.php(50): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+CRITICAL - 2024-09-07 08:20:35 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'aranea_holidaycity_db.recent_activity' doesn't exist
+[Method: GET, Route: healthcare_dashboard]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`', [], false)
+ 2 APPPATH\Models\RecentActivityModel.php(18): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->getRecentActivityWithUser()
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+CRITICAL - 2024-09-07 08:20:35 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'aranea_holidaycity_db.recent_activity' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`', [], false)
+ 4 APPPATH\Models\RecentActivityModel.php(18): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->getRecentActivityWithUser()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+CRITICAL - 2024-09-07 08:20:35 --> [Caused by] mysqli_sql_exception: Table 'aranea_holidaycity_db.recent_activity' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`', [], false)
+ 5 APPPATH\Models\RecentActivityModel.php(18): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->getRecentActivityWithUser()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+CRITICAL - 2024-09-07 08:59:45 --> ErrorException: Undefined array key "SECOND_DEV_HOSTNAME"
+[Method: GET, Route: healthcare_dashboard]
+in APPPATH\Config\Database.php on line 107.
+ 1 APPPATH\Config\Database.php(107): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "SECOND_DEV_HOSTNAME"', 'C:\\xampp\\htdocs\\admin.aranea.life\\app\\Config\\Database.php', 107)
+ 2 SYSTEMPATH\Config\Factories.php(235): Config\Database->__construct()
+ 3 SYSTEMPATH\Config\Factories.php(169): CodeIgniter\Config\Factories::createInstance('config', 'Config\\Database', [])
+ 4 SYSTEMPATH\Config\Factories.php(188): CodeIgniter\Config\Factories::__callStatic('config', [])
+ 5 SYSTEMPATH\Common.php(207): CodeIgniter\Config\Factories::get('config', 'Config\\Database')
+ 6 SYSTEMPATH\Database\Config.php(63): config('Config\\Database')
+ 7 SYSTEMPATH\Model.php(155): CodeIgniter\Database\Config::connect('default')
+ 8 APPPATH\Models\RecentActivityModel.php(14): CodeIgniter\Model->__construct()
+ 9 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+11 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+12 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+WARNING - 2024-09-07 09:00:33 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+ERROR - 2024-09-07 09:00:34 --> mysqli_sql_exception: Table 'aranea_holidaycity_db.recent_activity' doesn't exist in C:\xampp\htdocs\admin.aranea.life\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\admin.aranea.life\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT `recent_...', 0)
+#1 C:\xampp\htdocs\admin.aranea.life\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `recent_...')
+#2 C:\xampp\htdocs\admin.aranea.life\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `recent_...')
+#3 C:\xampp\htdocs\admin.aranea.life\system\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `recent_...', Array, false)
+#4 C:\xampp\htdocs\admin.aranea.life\app\Models\RecentActivityModel.php(29): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\admin.aranea.life\app\Controllers\AdminController.php(224): App\Models\RecentActivityModel->getRecentActivityWithUser()
+#6 C:\xampp\htdocs\admin.aranea.life\system\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+#7 C:\xampp\htdocs\admin.aranea.life\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#8 C:\xampp\htdocs\admin.aranea.life\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\admin.aranea.life\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\admin.aranea.life\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\admin.aranea.life\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 C:\xampp\htdocs\admin.aranea.life\system\rewrite.php(50): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+CRITICAL - 2024-09-07 09:00:34 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'aranea_holidaycity_db.recent_activity' doesn't exist
+[Method: GET, Route: healthcare_dashboard]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`', [], false)
+ 2 APPPATH\Models\RecentActivityModel.php(29): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->getRecentActivityWithUser()
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+CRITICAL - 2024-09-07 09:00:34 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'aranea_holidaycity_db.recent_activity' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`', [], false)
+ 4 APPPATH\Models\RecentActivityModel.php(29): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->getRecentActivityWithUser()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+CRITICAL - 2024-09-07 09:00:34 --> [Caused by] mysqli_sql_exception: Table 'aranea_holidaycity_db.recent_activity' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`', [], false)
+ 5 APPPATH\Models\RecentActivityModel.php(29): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->getRecentActivityWithUser()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 09:04:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 09:04:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 09:04:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 09:04:55 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+ERROR - 2024-09-07 09:04:55 --> mysqli_sql_exception: Table 'aranea_holidaycity_db.recent_activity' doesn't exist in C:\xampp\htdocs\admin.aranea.life\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\admin.aranea.life\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT `recent_...', 0)
+#1 C:\xampp\htdocs\admin.aranea.life\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `recent_...')
+#2 C:\xampp\htdocs\admin.aranea.life\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `recent_...')
+#3 C:\xampp\htdocs\admin.aranea.life\system\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `recent_...', Array, false)
+#4 C:\xampp\htdocs\admin.aranea.life\app\Models\RecentActivityModel.php(29): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\admin.aranea.life\app\Controllers\AdminController.php(224): App\Models\RecentActivityModel->getRecentActivityWithUser()
+#6 C:\xampp\htdocs\admin.aranea.life\system\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+#7 C:\xampp\htdocs\admin.aranea.life\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#8 C:\xampp\htdocs\admin.aranea.life\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\admin.aranea.life\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\admin.aranea.life\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\admin.aranea.life\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 C:\xampp\htdocs\admin.aranea.life\system\rewrite.php(50): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+CRITICAL - 2024-09-07 09:04:55 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'aranea_holidaycity_db.recent_activity' doesn't exist
+[Method: GET, Route: healthcare_dashboard]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`', [], false)
+ 2 APPPATH\Models\RecentActivityModel.php(29): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->getRecentActivityWithUser()
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+CRITICAL - 2024-09-07 09:04:55 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'aranea_holidaycity_db.recent_activity' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`', [], false)
+ 4 APPPATH\Models\RecentActivityModel.php(29): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->getRecentActivityWithUser()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+CRITICAL - 2024-09-07 09:04:55 --> [Caused by] mysqli_sql_exception: Table 'aranea_holidaycity_db.recent_activity' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `recent_activity`.*, `users`.`user_name`
+FROM `recent_activity`
+INNER JOIN `users` ON `users`.`user_id` = `recent_activity`.`user_id`', [], false)
+ 5 APPPATH\Models\RecentActivityModel.php(29): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->getRecentActivityWithUser()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+WARNING - 2024-09-07 09:05:49 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 09:05:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 10:14:43 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 10:14:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-09-07 10:14:43 --> ErrorException: Undefined array key "user"
+[Method: GET, Route: healthcare_dashboard]
+in APPPATH\Views\healthcare\admin_dashboard.php on line 1308.
+ 1 APPPATH\Views\healthcare\admin_dashboard.php(1308): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "user"', 'C:\\xampp\\htdocs\\admin.aranea.life\\app\\Views\\healthcare\\admin_dashboard.php', 1308)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\admin.aranea.life\\app\\Views\\healthcare\\admin_dashboard.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('healthcare/admin_dashboard', [], true)
+ 5 APPPATH\Controllers\AdminController.php(228): view('healthcare/admin_dashboard', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+WARNING - 2024-09-07 10:15:09 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 10:15:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-09-07 10:15:09 --> ErrorException: Undefined array key "activity"
+[Method: GET, Route: healthcare_dashboard]
+in APPPATH\Views\healthcare\admin_dashboard.php on line 1309.
+ 1 APPPATH\Views\healthcare\admin_dashboard.php(1309): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "activity"', 'C:\\xampp\\htdocs\\admin.aranea.life\\app\\Views\\healthcare\\admin_dashboard.php', 1309)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\xampp\\htdocs\\admin.aranea.life\\app\\Views\\healthcare\\admin_dashboard.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1169): CodeIgniter\View\View->render('healthcare/admin_dashboard', [], true)
+ 5 APPPATH\Controllers\AdminController.php(228): view('healthcare/admin_dashboard', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+WARNING - 2024-09-07 10:15:23 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 10:15:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 10:16:03 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 10:16:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 10:18:36 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 10:18:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 10:19:11 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 10:19:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 10:19:47 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 10:19:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 10:22:11 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 10:22:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 10:23:43 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 10:23:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 10:25:22 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 10:25:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 10:26:58 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 10:26:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 10:27:33 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 10:27:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 10:27:46 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 10:27:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 17:34:07 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 17:34:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 17:34:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 17:34:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 17:34:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 17:34:23 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 17:34:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 17:37:59 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 17:37:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 17:41:11 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 17:41:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 17:44:03 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 17:44:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 17:44:15 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 17:44:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 17:45:41 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 17:45:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 17:45:52 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 17:45:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 17:45:59 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 17:45:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 17:53:40 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 17:53:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-07 17:54:42 --> [DEPRECATED] Creation of dynamic property App\Models\RecentActivityModel::$secondDb is deprecated in APPPATH\Models\RecentActivityModel.php on line 17.
+ 1 APPPATH\Controllers\AdminController.php(224): App\Models\RecentActivityModel->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AdminController->HealthcareAdminDashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(50): require_once('C:\\xampp\\htdocs\\admin.aranea.life\\index.php')
+INFO - 2024-09-07 17:54:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

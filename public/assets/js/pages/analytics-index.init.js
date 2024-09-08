@@ -1,4 +1,67 @@
 var options = {
+    chart: {
+        height: 255,
+        type: "donut"
+    },
+    plotOptions: {
+        pie: {
+            donut: {
+                size: "85%"
+            }
+        }
+    },
+    dataLabels: {
+        enabled: false
+    },
+    stroke: {
+        show: true,
+        width: 2,
+        colors: ["transparent"]
+    },
+    series: [40, 30, 20, 10], // Replace with your investment percentages
+    legend: {
+        show: true,
+        position: "bottom",
+        horizontalAlign: "center",
+        verticalAlign: "middle",
+        floating: false,
+        fontSize: "13px",
+        offsetX: 0,
+        offsetY: 0
+    },
+    labels: ["ACEBRO-P", "BRO EE", "Product C", "Product D"], // Replace with your product names
+    colors: ["#2a76f4", "#38c4fa", "#f542a7", "#42f54e"], // Choose your color scheme
+    responsive: [{
+        breakpoint: 600,
+        options: {
+            plotOptions: {
+                donut: {
+                    customScale: 0.2
+                }
+            },
+            chart: {
+                height: 240
+            },
+            legend: {
+                show: false
+            }
+        }
+    }],
+    tooltip: {
+        y: {
+            formatter: function(value) {
+                return value + " %";
+            }
+        }
+    }
+};
+
+var chart = new ApexCharts(document.querySelector("#investmentChart"), options);
+chart.render();
+
+
+
+var options = {
     series: [{
         name: "New Visitors",
         data: [68, 44, 55, 57, 56, 61, 58, 63, 60, 66]
