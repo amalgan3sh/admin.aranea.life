@@ -50,10 +50,10 @@
         <div class="col-md-4 mb-3">
             <div class="card">
                 <div class="card-body text-center">
-                    <i class="fas fa-hospital fa-3x mb-3 text-primary"></i>
-                    <h5 class="card-title">Healthcare</h5>
-                    <p class="card-text">Access the Healthcare dashboard</p>
-                    <a href="<?php echo base_url('healthcare_dashboard') ?>" class="btn btn-primary">Go to Healthcare</a>
+                    <i class="fas fa-handshake fa-3x mb-3 text-primary"></i>
+                    <h5 class="card-title">Brand Partner Program</h5>
+                    <p class="card-text">Access the Brand Partner dashboard</p>
+                    <a href="<?php echo base_url('brand_partner_program_dashboard') ?>" class="btn btn-primary">Go to Brand Partner Program</a>
                 </div>
             </div>
         </div>
@@ -62,8 +62,8 @@
             <div class="card">
                 <div class="card-body text-center">
                     <i class="fas fa-umbrella-beach fa-3x mb-3 text-success"></i>
-                    <h5 class="card-title">HolidayCity</h5>
-                    <p class="card-text">Access the HolidayCity dashboard</p>
+                    <h5 class="card-title">Teak Forest - The Nest Ecocity</h5>
+                    <p class="card-text">Access the Teak Forest dashboard</p>
                     <a href="<?php echo base_url('holiday_dashboard') ?>" class="btn btn-success">Go to HolidayCity</a>
                 </div>
             </div>
