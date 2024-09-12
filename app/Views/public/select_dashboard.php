@@ -54,7 +54,7 @@
                                                         <i class="fas fa-handshake fa-3x mb-3 text-primary"></i>
                                                         <h5 class="card-title">Brand Partner Program</h5>
                                                         <p class="card-text">Access the Brand Partner dashboard</p>
-                                                        <a href="#" class="btn btn-primary">Go to Brand Partner </a>
+                                                        <a href="healthcare_dashboard" class="btn btn-primary">Go to Brand Partner </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -65,7 +65,7 @@
                                                         <i class="fas fa-umbrella-beach fa-3x mb-3 text-success"></i>
                                                         <h5 class="card-title">Teak Forest - The Nest Ecocity</h5>
                                                         <p class="card-text">Access the Teak Forest dashboard</p>
-                                                        <a href="#" class="btn btn-success">Go to HolidayCity</a>
+                                                        <a href="holiday_dashboard" class="btn btn-success">Go to HolidayCity</a>
                                                     </div>
                                                 </div>
                                             </div>
