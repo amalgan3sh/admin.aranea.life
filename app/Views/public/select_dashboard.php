@@ -110,9 +110,9 @@
                                                 <div class="card h-100">
                                                     <div class="card-body">
                                                         <i class="fas fa-shipping-fast fa-3x mb-3 text-secondary"></i>
-                                                        <h5 class="card-title">Import Export Solutions</h5>
-                                                        <p class="card-text">Access the IES dashboard</p>
-                                                        <a href="https://demo.lakshmipharmaceuticals.com/" class="btn btn-secondary">Go to Import Export</a>
+                                                        <h5 class="card-title">Ecommerce Store</h5>
+                                                        <p class="card-text">Access the Ecommerce dashboard</p>
+                                                        <a href="ecommerce_dashboard" class="btn btn-secondary">Go to Ecommerce</a>
                                                     </div>
                                                 </div>
                                             </div>

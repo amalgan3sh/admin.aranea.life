@@ -19,5 +19,8 @@ $routes->post('/registerUser', 'AuthController::registerUser');
 $routes->get('register', 'AuthController::register');
 $routes->get('/logout', 'AuthController::logout');
 
+$routes->get('/ecommerce_dashboard', 'EcommerceController::EcommerceDashboard');
+$routes->get('/add_product', 'EcommerceController::AddProduct');
+
 
 
