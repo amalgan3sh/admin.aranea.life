@@ -22,5 +22,8 @@ $routes->get('/logout', 'AuthController::logout');
 $routes->get('/ecommerce_dashboard', 'EcommerceController::EcommerceDashboard');
 $routes->get('/add_product', 'EcommerceController::AddProduct');
 
+$routes->post('/submit_add_product', 'EcommerceController::SubmitAddProduct');
+$routes->get('/product_list', 'EcommerceController::ProductList');
 
+$routes->get('/delete_product', 'EcommerceController::DeleteProduct');
 

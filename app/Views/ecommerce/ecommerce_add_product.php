@@ -42,7 +42,7 @@
                             <span class="text">Products</span>
                         </a>
                         <div class="submenu">
-                            <a href="page-products-list.html">Product List</a>
+                            <a href="product_list">Product List</a>
                             <a href="page-products-grid.html">Product grid</a>
                             <a href="page-products-grid-2.html">Product grid 2</a>
                             <a href="page-categories.html">Categories</a>
@@ -203,36 +203,119 @@
                         <div class="content-header">
                             <h2 class="content-title">Add New Product</h2>
                             <div>
-                                <button class="btn btn-light rounded font-sm mr-5 text-body hover-up">Save to draft</button>
-                                <button class="btn btn-md rounded font-sm hover-up">Publich</button>
+                                <!-- <button class="btn btn-light rounded font-sm mr-5 text-body hover-up">Save to draft</button> -->
+                                <!-- <button class="btn btn-md rounded font-sm hover-up ">Add</button> -->
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="card mb-4">
                             <div class="card-header">
                                 <h4>Basic</h4>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <?php if (isset($_GET['message'])): ?>
+                                <div class="alert alert-info" id="add_product_modal">
+                                   <span class="message"> <?= htmlspecialchars($_GET['message']) ?> </span>
+                                    <!-- <button type="button" id="close_modal" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button> -->
+                                </div>
+                                <?php endif; ?>
+
+                                <form class="row" method="post" action="submit_add_product" enctype="multipart/form-data">
+                                    <div class="col-lg-6">
                                     <div class="mb-4">
-                                        <label for="product_name" class="form-label">Product title</label>
-                                        <input type="text" placeholder="Type here" class="form-control" id="product_name" />
+                                        <label for="product_name" class="form-label">Product Name</label>
+                                        <input type="text" placeholder="Type here" class="form-control" id="product_name" name="product_name" required>
                                     </div>
                                     <div class="mb-4">
+                                        <label class="form-label" for="content">Content</label>
+                                        <textarea placeholder="Type here" class="form-control" rows="4" id="content" name="content" required></textarea>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-label">Dosage Form</label>
+                                        <input type="text" placeholder="Type here" class="form-control" id="dosage_form" name="dosage_form" required />
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-label">Strength</label>
+                                        <input type="text" placeholder="Type here" class="form-control" id="strength" name="strength" required />
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-label">Therapeutic Use</label>
+                                        <textarea placeholder="Type here" class="form-control" rows="4" id="therapeutic_use" name="therapeutic_use" required></textarea>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-label" for="tab_shape_and_color">Shape & Color</label>
+                                        <input type="text" placeholder="Type here" class="form-control" id="tab_shape_and_color" name="tab_shape_and_color" required />
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-label">Product Image</label>
+                                        <div class="input-upload">
+                                            <img src="assets/imgs/theme/upload.svg" alt="" />
+                                            <input class="form-control" id="main_product_image" name="main_product_image" type="file" />
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-label">Other Images</label>
+                                        <div class="input-upload">
+                                            <img src="assets/imgs/theme/upload.svg" alt="" />
+                                            <input class="form-control" id="other_product_images" name="other_product_images[]" type="file"  multiple>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                            <div class="mb-4">
+                                                <label for="packaging" class="form-label">Packaging</label>
+                                                <input type="text" placeholder="Packaging" class="form-control" id="packaging" name="packaging" required />
+                                            </div>
+                                        
+                                        
+                                            <div class="mb-4">
+                                                <label for="batch_number" class="form-label">Batch Number</label>
+                                                <input type="text" placeholder="Batch Number" class="form-control" id="batch_number" name="batch_number" required />
+                                            </div>
+                                        
+                                            <div class="mb-4">
+                                        <label for="manufacturing_date" class="form-label">Manufacturing Date</label>
+                                        <input type="date" placeholder="gam" class="form-control" id="manufacturing_date" name="manufacturing_date" required />
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="expiry_date" class="form-label">Expiry Date</label>
+                                        <input type="date" placeholder="$" class="form-control" id="expiry_date" name="expiry_date" required />
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="unit_size" class="form-label">Unit Size</label>
+                                        <input type="text" placeholder="UnitSize" class="form-control" id="unit_size" name="unit_size" required />
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="shipper_size" class="form-label">Shipper Size</label>
+                                        <input type="text" placeholder="UnitSize" class="form-control" id="shipper_size" name="shipper_size" required />
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="icon" class="form-label">Icon</label>
+                                        <input type="text" placeholder="Icon" class="form-control" id="icon" name="icon" />
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="rating" class="form-label">Rating</label>
+                                        <input type="number" placeholder="Rating" class="form-control" id="rating" name="rating" />
+                                    </div>
+                                    
+                                    </div>
+                                    <!-- <div class="mb-4">
                                         <label class="form-label">Full description</label>
                                         <textarea placeholder="Type here" class="form-control" rows="4"></textarea>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-4">
+                                    </div> -->
+                                    <!-- <div class="row"> -->
+                                        <!-- <div class="col-lg-4">
                                             <div class="mb-4">
                                                 <label class="form-label">Regular price</label>
                                                 <div class="row gx-2">
                                                     <input placeholder="$" type="text" class="form-control" />
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-4">
+                                        </div> -->
+                                        <!-- <div class="col-lg-4">
                                             <div class="mb-4">
                                                 <label class="form-label">Promotional price</label>
                                                 <input placeholder="$" type="text" class="form-control" />
@@ -245,21 +328,28 @@
                                                 <option>EUR</option>
                                                 <option>RUBL</option>
                                             </select>
-                                        </div>
-                                    </div>
-                                    <div class="mb-4">
+                                        </div> -->
+                                    <!-- </div> -->
+                                    <!-- <div class="mb-4">
                                         <label class="form-label">Tax rate</label>
                                         <input type="text" placeholder="%" class="form-control" id="product_name" />
                                     </div>
                                     <label class="form-check mb-4">
                                         <input class="form-check-input" type="checkbox" value="" />
                                         <span class="form-check-label"> Make a template </span>
-                                    </label>
+                                    </label> -->
+                                    <div class="form-group mb-0 row">
+                                            <div class="">
+                                                <div class="d-grid mt-3">
+                                                    <button class="btn btn-primary" type="submit">Add <i class="fas fa-sign-in-alt ms-1"></i></button>
+                                                </div>
+                                            </div><!--end col--> 
+                                        </div> <!--end form-group--> 
                                 </form>
                             </div>
                         </div>
                         <!-- card end// -->
-                        <div class="card mb-4">
+                        <!-- <div class="card mb-4">
                             <div class="card-header">
                                 <h4>Shipping</h4>
                             </div>
@@ -289,11 +379,57 @@
                                     </div>
                                 </form>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- card end// -->
                     </div>
-                    <div class="col-lg-3">
-                        <div class="card mb-4">
+                    <div class="col-lg-6">
+                    <!-- <div class="card mb-4">
+                            <div class="card-header">
+                                <h4>Other Details</h4>
+                            </div>
+                            <div class="card-body"> -->
+                                <!-- <form>
+                                    <div class="row">
+                                            <div class="mb-4">
+                                                <label for="packaging" class="form-label">Packaging</label>
+                                                <input type="text" placeholder="Packaging" class="form-control" id="packaging" name="packaging" />
+                                            </div>
+                                        
+                                        
+                                            <div class="mb-4">
+                                                <label for="batch_number" class="form-label">Batch Number</label>
+                                                <input type="text" placeholder="Batch Number" class="form-control" id="batch_number" name="batch_number" />
+                                            </div>
+                                        
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="manufacturing_date" class="form-label">Manufacturing Date</label>
+                                        <input type="date" placeholder="gam" class="form-control" id="manufacturing_date" name="manufacturing_date" />
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="expiry_date" class="form-label">Expiry Date</label>
+                                        <input type="date" placeholder="$" class="form-control" id="expiry_date" name="expiry_date" />
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="unit_size" class="form-label">Unit Size</label>
+                                        <input type="text" placeholder="UnitSize" class="form-control" id="unit_size" name="unit_size" />
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="shipper_size" class="form-label">Shipper Size</label>
+                                        <input type="text" placeholder="UnitSize" class="form-control" id="shipper_size" name="shipper_size" />
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="icon" class="form-label">Icon</label>
+                                        <input type="text" placeholder="Icon" class="form-control" id="icon" name="icon" />
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="rating" class="form-label">Rating</label>
+                                        <input type="number" placeholder="Rating" class="form-control" id="rating" name="rating" />
+                                    </div>
+                                </form> -->
+                            <!-- </div>
+                        </div> -->
+                        <!-- <div class="card mb-4">
                             <div class="card-header">
                                 <h4>Media</h4>
                             </div>
@@ -303,9 +439,9 @@
                                     <input class="form-control" type="file" />
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- card end// -->
-                        <div class="card mb-4">
+                        <!-- <div class="card mb-4">
                             <div class="card-header">
                                 <h4>Organization</h4>
                             </div>
@@ -336,9 +472,9 @@
                                         <input type="text" class="form-control" />
                                     </div>
                                 </div>
-                                <!-- row.// -->
+                                 row.// -->
                             </div>
-                        </div>
+                        </div> 
                         <!-- card end// -->
                     </div>
                 </div>
@@ -365,5 +501,24 @@
         <script src="<?php echo base_url('ecommerce/') ?>assets/js/vendors/jquery.fullscreen.min.js"></script>
         <!-- Main Script -->
         <script src="<?php echo base_url('ecommerce/') ?>assets/js/main.js?v=6.0" type="text/javascript"></script>
+        <script>
+            
+
+        // Function to show alert messages
+        function showAlert(message) {
+            alert(message);
+        }
+
+        // Check if there is a flashdata message for success or error
+        <?php if (session()->getFlashdata('success')): ?>
+            showAlert("<?php echo session()->getFlashdata('success'); ?>");
+        <?php endif; ?>
+
+        <?php if (session()->getFlashdata('error')): ?>
+            showAlert("<?php echo session()->getFlashdata('error'); ?>");
+        <?php endif; ?>
+
+    
+        </script>
     </body>
 </html>
