@@ -6,7 +6,10 @@ use CodeIgniter\HTTP\RedirectResponse;
 use App\Models\SurveyModel;
 use App\Models\RecentActivityModel;
 use App\Models\SupportRequestModel;
-
+use App\Models\InvestmentRequestModel;
+use App\Models\ProductHoldingsModel;
+use App\Models\KycModel;
+use App\Models\UserModel;
 
 
 class AdminController extends BaseController
@@ -233,6 +236,122 @@ class AdminController extends BaseController
             return $this->redirectUnauthorized();
         }
     }
+    public function InvestmentRequest()
+    {
+        $data = [
+            'invest_requests' => (new InvestmentRequestModel())->getInvestmentRequestsFromSecondDb(),
+        ];
+        log_message('info', 'Data passed to view: ' . json_encode($data['invest_requests']));
+        if ($this->authorize('super_admin')) {
+            return view('healthcare/investment_request',$data);
+        } else {
+            return $this->redirectUnauthorized();
+        }
+    }
+
+    public function approveKyc(){
+        $data = [
+            'kyc_details' => (new KycModel())->getKycDetails(),
+        ];
+        log_message('info', 'Data passed to view: ' . json_encode($data['kyc_details']));
+        if ($this->authorize('super_admin')) {
+            return view('healthcare/approve_kyc',$data);
+        } else {
+            return $this->redirectUnauthorized();
+        }
+    }
+
+
+    public function approve()
+    {
+        // Load the necessary models
+        $investmentRequestModel = new InvestmentRequestModel();
+        $productHoldingsModel = new ProductHoldingsModel();
+
+        // Get POST data
+        $investmentId = $this->request->getPost('investment_id');
+        $userId = $this->request->getPost('user_id');
+        $productId = $this->request->getPost('product_id');
+
+        // Define other necessary variables for the product_holdings table
+        $holdingValue = $this->request->getPost('holding_value');
+        $changePercentage = $this->request->getPost('change_percentage');
+        $weekChange = $this->request->getPost('week_change');
+        $favorite = $this->request->getPost('favorite');
+        $investmentAmount = $this->request->getPost('investment_amount');
+        $dateOfInvestment = $this->request->getPost('date_of_investment');
+
+        // Update the investment request status
+        $updateStatus = $investmentRequestModel->updateInvestmentRequestStatus($investmentId, ['status' => 'approved']);
+        
+        // Check if the update was successful
+        if (!$updateStatus) {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'Failed to update investment request status.']);
+        }
+
+        // Prepare data for the product_holdings table
+        $data = [
+            'product_id' => $productId,
+            'user_id' => $userId,
+            'holding_value' => $holdingValue,
+            'change_percentage' => $changePercentage,
+            'week_change' => $weekChange,
+            'favorite' => $favorite,
+            'investment_amount' => $investmentAmount,
+            'date_of_investment' => $dateOfInvestment,
+        ];
+
+        // Insert into product_holdings table
+        if ($productHoldingsModel->insert($data)) {
+            return $this->response->setJSON(['status' => 'success', 'message' => 'Investment request approved successfully.']);
+        } else {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'Failed to insert into product_holdings.']);
+        }
+    }
+    public function reject()
+    {
+        // Load the necessary models
+        $investmentRequestModel = new InvestmentRequestModel();
+        $productHoldingsModel = new ProductHoldingsModel();
+
+        // Get POST data
+        $investmentId = $this->request->getPost('investment_id');
+        $userId = $this->request->getPost('user_id');
+        $productId = $this->request->getPost('product_id');
+
+        // Define other necessary variables for the product_holdings table
+        $holdingValue = $this->request->getPost('holding_value');
+        $changePercentage = $this->request->getPost('change_percentage');
+        $weekChange = $this->request->getPost('week_change');
+        $favorite = $this->request->getPost('favorite');
+        $investmentAmount = $this->request->getPost('investment_amount');
+        $dateOfInvestment = $this->request->getPost('date_of_investment');
+
+        // Update the investment request status
+        $updateStatus = $investmentRequestModel->updateInvestmentRequestStatus($investmentId, ['status' => 'rejected']);
+        
+        // Check if the update was successful
+        if (!$updateStatus) {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'Failed to update investment request status.']);
+        }
+
+        // Prepare data for the product_holdings table
+        $data = [
+            'product_id' => $productId,
+            'user_id' => $userId,
+            'holding_value' => $holdingValue,
+            'change_percentage' => $changePercentage,
+            'week_change' => $weekChange,
+            'favorite' => $favorite,
+            'investment_amount' => $investmentAmount,
+            'date_of_investment' => $dateOfInvestment,
+        ];
+
+        
+        return $this->response->setJSON(['status' => 'success', 'message' => 'Investment request rejected successfully.']);
+        
+    }
+
 
     private function getGenderChartData($surveyModel)
     {
@@ -249,4 +368,52 @@ class AdminController extends BaseController
 
         return [$genderLabels, $genderCounts];
     }
+
+    public function kycApprove()
+    {
+        // Load the necessary models
+        $kycModel = new KycModel();
+        $userModel = new UserModel();
+
+        // Get POST data
+        $kycId = $this->request->getPost('kyc_id');
+        $userId = $this->request->getPost('user_id');
+
+        // Update the investment request status
+        $updateStatus = $kycModel->updateKycStatus($kycId, ['status' => 'approved']);
+        $userModel->updateKycStatus($userId, ['kyc_verify' => 'approved']);
+        
+        // Check if the update was successful
+        if (!$updateStatus) {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'KYC Request Approval Failed.']);
+        }
+
+        return $this->response->setJSON(['status' => 'success', 'message' => 'KYC request rejected successfully.']);
+    }
+    public function kycReject()
+    {
+        // Load the necessary models
+        $kycModel = new KycModel();
+        $userModel = new UserModel();
+
+        // Get POST data
+        $kycId = $this->request->getPost('kyc_id');
+        $userId = $this->request->getPost('user_id');
+
+        // Update the investment request status
+        $updateStatus = $kycModel->updateKycStatus($kycId, ['status' => 'rejected']);
+        $userModel->updateKycStatus($userId, ['kyc_verify' => 'rejected']);
+        
+        // Check if the update was successful
+        if (!$updateStatus) {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'KYC Request Rejection Failed.']);
+        }
+
+        
+        return $this->response->setJSON(['status' => 'success', 'message' => 'KYC request rejected successfully.']);
+        
+    }
+
+
+    
 }
