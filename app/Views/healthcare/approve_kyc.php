@@ -178,7 +178,6 @@
                     action: action
                 };
 
-                alert(data.action)
                 // Make the AJAX request
                 $.ajax({
                     url: `<?= base_url("kyc_") ?>${action}`, // Adjust the URL as needed
