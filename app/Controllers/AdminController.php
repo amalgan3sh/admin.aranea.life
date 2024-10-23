@@ -10,6 +10,7 @@ use App\Models\InvestmentRequestModel;
 use App\Models\ProductHoldingsModel;
 use App\Models\KycModel;
 use App\Models\UserModel;
+use App\Models\ProductModel;
 
 
 class AdminController extends BaseController
@@ -412,6 +413,64 @@ class AdminController extends BaseController
         
         return $this->response->setJSON(['status' => 'success', 'message' => 'KYC request rejected successfully.']);
         
+    }
+
+    function ProductListing(){
+
+        $productModel = new ProductModel();        
+        $data = [];
+
+        $data['product_list'] = $productModel->getManufacturerProductsList();
+
+        return view('healthcare/product_listing', $data);
+    }
+
+
+    public function ProductApproveSubmit() {
+
+        $productModel = new ProductModel();      
+
+        $productId = $this->request->getPost('product_id');
+        $userId = $this->request->getPost('user_id');
+        $reason = $this->request->getPost('status_description');
+        
+        // Add validation if necessary
+        if (empty($productId) || empty($userId) || empty($reason)) {
+            return $this->response->setJSON(['success' => false, 'message' => 'All fields are required.']);
+        }
+
+        // Call your model to save the approval information
+        $success = $productModel->approveProduct($productId, $userId, $reason);
+
+        if ($success) {
+            return $this->response->setJSON(['success' => true, 'message' => 'Product Approved.']);
+        } else {
+            return $this->response->setJSON(['success' => false, 'message' => 'Unable to Approve Product.']);
+        }
+    }
+
+
+    public function ProductRejectSubmit() {
+
+        $productModel = new ProductModel();      
+
+        $productId = $this->request->getPost('product_id');
+        $userId = $this->request->getPost('user_id');
+        $reason = $this->request->getPost('status_description');
+        
+        // Add validation if necessary
+        if (empty($productId) || empty($userId) || empty($reason)) {
+            return $this->response->setJSON(['success' => false, 'message' => 'All fields are required.']);
+        }
+
+        // Call your model to save the reject information
+        $success = $productModel->rejectProduct($productId, $userId, $reason);
+
+        if ($success) {
+            return $this->response->setJSON(['success' => true, 'message' => 'Product Rejected.']);
+        } else {
+            return $this->response->setJSON(['success' => false, 'message' => 'Unable to Reject Product.']);
+        }
     }
 
 

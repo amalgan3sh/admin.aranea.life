@@ -69,6 +69,9 @@
                         <a class="nav-link" href="/approve_kyc">KYC Approval</a>
                     </li><!--end nav-item-->
                     <li class="nav-item">
+                        <a class="nav-link" href="/product_listing">Products</a>
+                    </li><!--end nav-item-->
+                    <li class="nav-item">
                         <a class="nav-link" href="">Project</a>
                     </li><!--end nav-item-->
                     <li class="nav-item">

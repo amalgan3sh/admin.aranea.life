@@ -26,4 +26,15 @@ class UserModel extends Model
         // Specify the record to be updated and apply the data
         return $builder->where('user_id', $userId)->update($data);
     }
+
+    public function getUsersList() {
+
+        $this->secondDb = \Config\Database::connect('second_db');
+        $results = $this->secondDb->table('users')
+        ->orderBy('user_id', 'DESC') // Change 'id' to the column you want to sort by
+        ->get()
+        ->getResultArray();
+       
+        return $results;
+    }
 }

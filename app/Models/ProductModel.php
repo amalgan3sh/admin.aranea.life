@@ -47,9 +47,86 @@ class ProductModel extends Model
         return $results;
     }
 
+
     public function deleteProduct($id){
         return $this->secondDb->table($this->table)->delete(['product_id' => $id]);
     }
+
+    public function getManufacturerProductsList()
+    {
+        $results = $this->secondDb->table('manufacturer_products')
+        ->select('*')
+        ->get()
+        ->getResultArray();
+
+        return $results;
+    }
+
+    public function approveProduct($productId, $userId, $reason){
+        // Use the builder to update the record in the investment_request table
+        $builder = $this->secondDb->table('manufacturer_products');
+
+        // Use the query builder provided by the model
+
+        // First, check if an approval already exists for this product_id and user_id
+        $builder->where('id', $productId);
+        $builder->where('user_id', $userId);
+        $query = $builder->get();
+
+        if ($query->getNumRows() > 0) {
+            // If an approval already exists, update the existing record
+            $data = [
+                'status_description' => $reason,
+                'status' => 'approved'  // Optionally update the timestamp
+            ];
+            $builder->where('id', $productId);
+            $builder->where('user_id', $userId);
+            return $builder->update($data);
+        } 
+    }
+
+    public function rejectProduct($productId, $userId, $reason){
+        // Use the builder to update the record in the investment_request table
+        $builder = $this->secondDb->table('manufacturer_products');
+
+        // Use the query builder provided by the model
+
+        // First, check if an approval already exists for this product_id and user_id
+        $builder->where('id', $productId);
+        $builder->where('user_id', $userId);
+        $query = $builder->get();
+
+        if ($query->getNumRows() > 0) {
+            // If an approval already exists, update the existing record
+            $data = [
+                'status_description' => $reason,
+                'status' => 'rejected'  // Optionally update the timestamp
+            ];
+            $builder->where('id', $productId);
+            $builder->where('user_id', $userId);
+            return $builder->update($data);
+        } 
+    }
+
+
+    public function getProductsCountStatusWise() {
+
+        $builder = $this->secondDb->table('manufacturer_products');
+        $data = [];
+
+       $data['approved_count'] = $builder
+       ->where('status', 'approved')
+       ->countAllResults(false);  // 'false' ensures the builder is not reset after counting
+
+       $data['rejected_count'] = $builder
+    ->where('status', 'rejected')
+    ->countAllResults(false);  // 'false' ensures the builder is not reset after counting
+
+   
+    return $data;
+    }
+
+    
 }
 
 ?>

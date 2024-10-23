@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 use App\Models\ProductModel;
+use App\Models\RecentActivityModel;
+use App\Models\UserModel;
 
 use CodeIgniter\Controller;
 
@@ -14,8 +16,26 @@ class EcommerceController extends Controller
     public function EcommerceDashboard()
     {
         // Load the ecommerce_home view
+        $ProductModel = new ProductModel();
+        
+        $data = [];
+
+        $data = $ProductModel->getProductsCountStatusWise();
+        $manufacture_products_list = $ProductModel->getManufacturerProductsList();
+
+        $total_count = count($manufacture_products_list);
+        $data['total_count'] =  $total_count;
+
+        $data['added_product_total'] = count($ProductModel->getProductsList());
+
+        $RecentActivityModel = new RecentActivityModel();
+        $data['recent_activity'] = $RecentActivityModel->getRecentActivityWithUser();
+
+        $UserModel = new UserModel();
+        $data['users_list'] = $UserModel->getUsersList();
+
         echo view('ecommerce/ecommerce_header');
-        echo view('ecommerce/ecommerce_dashboard');
+        echo view('ecommerce/ecommerce_dashboard', $data);
     }
     public function AddProduct()
     {

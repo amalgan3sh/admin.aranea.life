@@ -35,3 +35,7 @@ $routes->get('/product_list', 'EcommerceController::ProductList');
 
 $routes->get('/delete_product', 'EcommerceController::DeleteProduct');
 
+$routes->get('/product_listing', 'AdminController::ProductListing');
+$routes->post('/submit_approve', 'AdminController::ProductApproveSubmit');
+$routes->post('/submit_reject', 'AdminController::ProductRejectSubmit');
+

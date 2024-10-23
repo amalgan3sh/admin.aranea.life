@@ -60,19 +60,19 @@
                         <h2 class="content-title card-title">Dashboard</h2>
                         <p>Whole data about your business here</p>
                     </div>
-                    <div>
+                    <!-- <div>
                         <a href="#" class="btn btn-primary"><i class="text-muted material-icons md-post_add"></i>Create report</a>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="card card-body mb-4">
                             <article class="icontext">
-                                <span class="icon icon-sm rounded-circle bg-primary-light"><i class="text-primary material-icons md-monetization_on"></i></span>
+                                <span class="icon icon-sm rounded-circle bg-info-light"><i class="text-info material-icons md-shopping_bag"></i></span>
                                 <div class="text">
-                                    <h6 class="mb-1 card-title">Revenue</h6>
-                                    <span>$13,456.5</span>
-                                    <span class="text-sm"> Shipping fees are not included </span>
+                                    <h6 class="mb-1 card-title">Added Products</h6>
+                                    <span><?php  echo $added_product_total; ?></span>
+                                    <span class="text-sm">No of Products added.</span>
                                 </div>
                             </article>
                         </div>
@@ -80,23 +80,11 @@
                     <div class="col-lg-3">
                         <div class="card card-body mb-4">
                             <article class="icontext">
-                                <span class="icon icon-sm rounded-circle bg-success-light"><i class="text-success material-icons md-local_shipping"></i></span>
-                                <div class="text">
-                                    <h6 class="mb-1 card-title">Orders</h6>
-                                    <span>53.668</span>
-                                    <span class="text-sm"> Excluding orders in transit </span>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="card card-body mb-4">
-                            <article class="icontext">
-                                <span class="icon icon-sm rounded-circle bg-warning-light"><i class="text-warning material-icons md-qr_code"></i></span>
+                                <span class="icon icon-sm rounded-circle bg-warning-light"><i class="text-warning material-icons md-shopping_bag"></i></span>
                                 <div class="text">
                                     <h6 class="mb-1 card-title">Products</h6>
-                                    <span>9.856</span>
-                                    <span class="text-sm"> In 19 Categories </span>
+                                    <span><?php  echo $total_count; ?></span>
+                                    <span class="text-sm"> Products waiting for approval.</span>
                                 </div>
                             </article>
                         </div>
@@ -104,11 +92,23 @@
                     <div class="col-lg-3">
                         <div class="card card-body mb-4">
                             <article class="icontext">
-                                <span class="icon icon-sm rounded-circle bg-info-light"><i class="text-info material-icons md-shopping_basket"></i></span>
+                                <span class="icon icon-sm rounded-circle bg-success-light"><i class="text-success material-icons md-shopping_bag"></i></span>
                                 <div class="text">
-                                    <h6 class="mb-1 card-title">Monthly Earning</h6>
-                                    <span>$6,982</span>
-                                    <span class="text-sm"> Based in your local time. </span>
+                                    <h6 class="mb-1 card-title">Approved Products</h6>
+                                    <span><?php  echo $approved_count; ?></span>
+                                    <span class="text-sm"> Products approved by Admin. </span>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card card-body mb-4">
+                            <article class="icontext">
+                                <span class="icon icon-sm rounded-circle bg-danger-light"><i class="text-danger material-icons md-shopping_bag"></i></span>
+                                <div class="text">
+                                    <h6 class="mb-1 card-title">Rejected Products</h6>
+                                    <span><?php  echo $rejected_count; ?></span>
+                                    <span class="text-sm"> Products rejected by Admin. </span>
                                 </div>
                             </article>
                         </div>
@@ -116,48 +116,33 @@
                 </div>
                 <div class="row">
                     <div class="col-xl-8 col-lg-12">
-                        <div class="card mb-4">
+                        <!-- <div class="card mb-4">
                             <article class="card-body">
                                 <h5 class="card-title">Sale statistics</h5>
                                 <canvas id="myChart" height="120px"></canvas>
                             </article>
-                        </div>
+                        </div> -->
                         <div class="row">
                             <div class="col-lg-5">
                                 <div class="card mb-4">
                                     <article class="card-body">
-                                        <h5 class="card-title">New Members</h5>
+                                        <h5 class="card-title">Latest Members Added</h5>
                                         <div class="new-member-list">
+                                            <?php 
+                                            $count = 1;
+                                            foreach($users_list as $user_info) { 
+                                                if($count == 6) { break; } ?>
                                             <div class="d-flex align-items-center justify-content-between mb-4">
                                                 <div class="d-flex align-items-center">
-                                                    <img src="assets/imgs/people/avatar-4.png" alt="" class="avatar" />
+                                                    <img src="assets/images/avatar-1.png" alt="" class="avatar" />
                                                     <div>
-                                                        <h6>Patric Adams</h6>
-                                                        <p class="text-muted font-xs">Sanfrancisco</p>
+                                                        <h6><?php echo ucwords($user_info['firstname'].' '.$user_info['lastname']); ?></h6>
+                                                        <p class="text-muted font-xs"><?php echo $user_info['location']; ?></p>
                                                     </div>
                                                 </div>
-                                                <a href="#" class="btn btn-xs"><i class="material-icons md-add"></i> Add</a>
+                                                <!-- <a href="#" class="btn btn-xs"><i class="material-icons md-add"></i> Add</a> -->
                                             </div>
-                                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                                <div class="d-flex align-items-center">
-                                                    <img src="assets/imgs/people/avatar-2.png" alt="" class="avatar" />
-                                                    <div>
-                                                        <h6>Dilan Specter</h6>
-                                                        <p class="text-muted font-xs">Sanfrancisco</p>
-                                                    </div>
-                                                </div>
-                                                <a href="#" class="btn btn-xs"><i class="material-icons md-add"></i> Add</a>
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                                <div class="d-flex align-items-center">
-                                                    <img src="assets/imgs/people/avatar-3.png" alt="" class="avatar" />
-                                                    <div>
-                                                        <h6>Tomas Baker</h6>
-                                                        <p class="text-muted font-xs">Sanfrancisco</p>
-                                                    </div>
-                                                </div>
-                                                <a href="#" class="btn btn-xs"><i class="material-icons md-add"></i> Add</a>
-                                            </div>
+                                            <?php $count++; } ?>
                                         </div>
                                     </article>
                                 </div>
@@ -167,78 +152,29 @@
                                     <article class="card-body">
                                         <h5 class="card-title">Recent activities</h5>
                                         <ul class="verti-timeline list-unstyled font-sm">
+                                            <?php 
+                                            foreach($recent_activity as $recent_activity_info){ ?>
                                             <li class="event-list">
                                                 <div class="event-timeline-dot">
                                                     <i class="material-icons md-play_circle_outline font-xxl"></i>
                                                 </div>
                                                 <div class="media">
                                                     <div class="me-3">
-                                                        <h6><span>Today</span> <i class="material-icons md-trending_flat text-brand ml-15 d-inline-block"></i></h6>
+                                                        <h6><span><?php echo date('j M', strtotime($recent_activity_info['timestamp'])) ?></span> <i class="material-icons md-trending_flat text-brand ml-15 d-inline-block"></i></h6>
                                                     </div>
                                                     <div class="media-body">
-                                                        <div>Lorem ipsum dolor sit amet consectetur</div>
+                                                        <div><?php echo $recent_activity_info['type']; ?> by <?php echo ucwords($recent_activity_info['user_name']); ?> </div>
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li class="event-list active">
-                                                <div class="event-timeline-dot">
-                                                    <i class="material-icons md-play_circle_outline font-xxl animation-fade-right"></i>
-                                                </div>
-                                                <div class="media">
-                                                    <div class="me-3">
-                                                        <h6><span>17 May</span> <i class="material-icons md-trending_flat text-brand ml-15 d-inline-block"></i></h6>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <div>Debitis nesciunt voluptatum dicta reprehenderit</div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="event-list">
-                                                <div class="event-timeline-dot">
-                                                    <i class="material-icons md-play_circle_outline font-xxl"></i>
-                                                </div>
-                                                <div class="media">
-                                                    <div class="me-3">
-                                                        <h6><span>13 May</span> <i class="material-icons md-trending_flat text-brand ml-15 d-inline-block"></i></h6>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <div>Accusamus voluptatibus voluptas.</div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="event-list">
-                                                <div class="event-timeline-dot">
-                                                    <i class="material-icons md-play_circle_outline font-xxl"></i>
-                                                </div>
-                                                <div class="media">
-                                                    <div class="me-3">
-                                                        <h6><span>05 April</span> <i class="material-icons md-trending_flat text-brand ml-15 d-inline-block"></i></h6>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <div>At vero eos et accusamus et iusto odio dignissi</div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="event-list">
-                                                <div class="event-timeline-dot">
-                                                    <i class="material-icons md-play_circle_outline font-xxl"></i>
-                                                </div>
-                                                <div class="media">
-                                                    <div class="me-3">
-                                                        <h6><span>26 Mar</span> <i class="material-icons md-trending_flat text-brand ml-15 d-inline-block"></i></h6>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <div>Responded to need “Volunteer Activities</div>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                            <?php } ?>
                                         </ul>
                                     </article>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-12">
+                    <!-- <div class="col-xl-4 col-lg-12">
                         <div class="card mb-4">
                             <article class="card-body">
                                 <h5 class="card-title">Revenue Base on Area</h5>
@@ -270,9 +206,9 @@
                                 </div>
                             </article>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
-                <div class="card mb-4">
+                <!-- <div class="card mb-4">
                     <header class="card-header">
                         <h4 class="card-title">Latest orders</h4>
                         <div class="row align-items-center">
@@ -448,11 +384,11 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- table-responsive end// -->
-                    </div>
-                </div>
-                <div class="pagination-area mt-30 mb-50">
+                    <!-- </div>
+                </div> -->
+                <!-- <div class="pagination-area mt-30 mb-50">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-start">
                             <li class="page-item active"><a class="page-link" href="#">01</a></li>
@@ -465,7 +401,7 @@
                             </li>
                         </ul>
                     </nav>
-                </div>
+                </div> -->
             </section>
             <!-- content-main end// -->
             <footer class="main-footer font-xs">
