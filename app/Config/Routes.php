@@ -19,7 +19,12 @@ $routes->post('/investment_reject', 'AdminController::reject');
 $routes->get('/approve_kyc', 'AdminController::approveKyc');
 $routes->post('/kyc_approve', 'AdminController::kycApprove');
 $routes->post('/kyc_reject', 'AdminController::kycReject');
+$routes->get('/orders', 'AdminController::ViewOrders');
 
+$routes->post('orders/createQuotation', 'AdminController::createQuotation');
+$routes->post('orders/rejectOrder', 'AdminController::rejectOrder');
+$routes->get('orders/viewQuotationPdf/(:num)', 'AdminController::viewQuotationPdf/$1');
+$routes->post('orders/notifyClient', 'AdminController::notifyClient');
 
 
 $routes->get('register', 'AuthController::register');

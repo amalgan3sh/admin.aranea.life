@@ -39,11 +39,11 @@
                                 <div class="float-end">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">Aranea</a></li>
-                                        <li class="breadcrumb-item"><a href="#">Investments</a></li>
-                                        <li class="breadcrumb-item active">Investment Requests</li>
+                                        <li class="breadcrumb-item"><a href="#">Products</a></li>
+                                        <li class="breadcrumb-item active">Product Listing</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Investments</h4>
+                                <h4 class="page-title">Products</h4>
                             </div><!--end page-title-box-->
                         </div><!--end col-->
                     </div>
@@ -53,7 +53,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Investment Requests </h4>
+                                    <h4 class="card-title">Product Listing</h4>
                                 </div><!--end card-header-->
                                 <div class="card-body">
                                 <div class="table-responsive">

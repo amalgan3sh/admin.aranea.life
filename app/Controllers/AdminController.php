@@ -11,6 +11,11 @@ use App\Models\ProductHoldingsModel;
 use App\Models\KycModel;
 use App\Models\UserModel;
 use App\Models\ProductModel;
+use App\Models\OrderModel;
+use App\Models\QuotationModel;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use CodeIgniter\Email\Email;
 
 
 class AdminController extends BaseController
@@ -443,12 +448,12 @@ class AdminController extends BaseController
         $success = $productModel->approveProduct($productId, $userId, $reason);
 
         if ($success) {
+            // $this->copyProductDataToProductData($productId);
             return $this->response->setJSON(['success' => true, 'message' => 'Product Approved.']);
         } else {
             return $this->response->setJSON(['success' => false, 'message' => 'Unable to Approve Product.']);
         }
     }
-
 
     public function ProductRejectSubmit() {
 
@@ -473,6 +478,470 @@ class AdminController extends BaseController
         }
     }
 
+    public function ViewOrders(){
+        $orderModel = new OrderModel();        
+        $data = [];
 
+        $data['orders'] = $orderModel->getOrdersWithProductNames();
+
+        return view('healthcare/orders', $data);
+    }
+
+    public function createQuotation()
+    {
+        $orderId = $this->request->getPost('order_id');
+        
+        // Load the Order model and retrieve the order by ID
+        $orderModel = new OrderModel();
+        $order = $orderModel->find($orderId);
     
+        // If the order is not found, return an error message
+        if (!$order) {
+            return $this->response->setJSON(['message' => 'Order not found.']);
+        }
+    
+        // Check if a quotation already exists for this order
+        $quotationModel = new QuotationModel();
+        $existingQuotation = $quotationModel->where('order_id', $orderId)->first();
+    
+        if ($existingQuotation) {
+            // If a quotation exists, show a popup message saying quotation already created
+            return $this->response->setJSON(['message' => 'Quotation already created for this order.']);
+        }
+    
+        // If no quotation exists, proceed to create a new one
+        $orderModel->update($orderId, ['status' => 'quoted']);
+    
+        // Prepare the quotation data
+        $quotationData = [
+            'order_id' => $order['order_id'],
+            'user_id' => $order['user_id'],
+            'product_names' => $order['order_items'],
+            'total_amount' => $order['total_amount'],
+            'status' => 'quoted', // Initial status
+            'created_at' => date('Y-m-d H:i:s')
+        ];
+    
+        // Save the new quotation to the database
+        $quotationModel->insert($quotationData);
+    
+        // Return a success message
+        return $this->response->setJSON(['message' => 'Quotation created successfully!']);
+    }
+
+    public function rejectOrder()
+    {
+        $orderId = $this->request->getPost('order_id');
+        $reason = $this->request->getPost('reason');
+
+        if ($orderId) {
+            $orderModel = new OrderModel();
+            $result = $orderModel->rejectOrder($orderId, $reason);
+
+            if ($result) {
+                return $this->response->setJSON(['status' => 'success', 'message' => 'Order rejected successfully.']);
+            } else {
+                return $this->response->setJSON(['status' => 'error', 'message' => 'Failed to reject the order.']);
+            }
+        }
+
+        return $this->response->setStatusCode(400)->setJSON(['status' => 'error', 'message' => 'Invalid order ID.']);
+    }
+
+    public function viewQuotationPdf($orderId)
+    {
+        // Fetch the order data
+        $order = $this->getOrderData($orderId);
+        
+        if (!$order) {
+            log_message('error', 'Order not found. Order ID: ' . $orderId);
+            return $this->response->setJSON(['message' => 'Order not found.']);
+        }
+    
+        // Generate and stream the PDF
+        $this->generateAndStreamPdf($order);
+    }
+
+    private function generateAndStreamPdf($order)
+    {
+        try {
+            $dompdf = new Dompdf();
+            $options = new Options();
+            $options->set('isHtml5ParserEnabled', true);
+            $dompdf->setOptions($options);
+
+            // Create HTML content for the PDF
+            $html = $this->generatePdfHtml($order);
+
+            // Load HTML content into Dompdf
+            $dompdf->loadHtml($html);
+
+            // Set paper size
+            $dompdf->setPaper('A4', 'portrait');
+
+            // Render the PDF
+            $dompdf->render();
+
+            // Output the PDF directly to the browser
+            $dompdf->stream('quotation_' . esc($order['order_id']) . '.pdf', ['Attachment' => 0]);
+        } catch (\Exception $e) {
+            log_message('error', 'Error generating and streaming PDF for Order ID: ' . esc($order['order_id']) . '. Error: ' . $e->getMessage());
+        }
+    }
+    
+    public function notifyClient()
+    {
+        // Get order and user details
+        $orderId = $this->request->getPost('order_id');
+        $userId = $this->request->getPost('user_id');
+    
+        // Fetch the order and user data
+        $order = $this->getOrderData($orderId);
+        $user = $this->getUserData($userId);
+    
+        if (!$order || !$user) {
+            log_message('error', 'Order or User not found. Order ID: ' . $orderId . ', User ID: ' . $userId);
+            return $this->response->setJSON(['message' => 'Order or User not found.']);
+        }
+    
+        // Generate the PDF and save it to a temporary path
+        $pdfPath = $this->generatePdf($order);
+        
+        if (!$pdfPath) {
+            log_message('error', 'Failed to generate PDF for Order ID: ' . $orderId);
+            return $this->response->setJSON(['message' => 'Failed to generate PDF.']);
+        }
+    
+        // Send email with PDF attachment
+        $emailStatus = $this->sendEmailWithAttachment($user, $pdfPath);
+    
+        if ($emailStatus) {
+            log_message('info', 'Quotation email sent to user: '.json_encode($user));
+            
+            // Update the order status to 'quoted'
+            $this->updateOrderStatus($orderId);
+    
+            // Delete the temporary PDF
+            unlink($pdfPath);
+    
+            return $this->response->setJSON(['message' => 'Quotation has been emailed to the client.']);
+        } else {
+            log_message('error', 'Failed to send email for Order ID: ' . $orderId . ' to User ID: ' . $userId);
+            return $this->response->setJSON(['message' => 'Failed to send email.']);
+        }
+    }
+    
+    private function getOrderData($orderId)
+    {
+        $orderModel = new OrderModel();
+        return $orderModel->find($orderId);
+    }
+    
+    private function getUserData($userId)
+    {
+        $userModel = new UserModel();
+        return $userModel->find($userId);
+    }
+    
+    private function generatePdf($order)
+    {
+        try {
+            $dompdf = new Dompdf();
+            $options = new Options();
+            $options->set('isHtml5ParserEnabled', true);
+            $dompdf->setOptions($options);
+    
+            // Create HTML content for the PDF
+            $html = $this->generatePdfHtml($order);
+    
+            // Load HTML content into Dompdf
+            $dompdf->loadHtml($html);
+    
+            // Set paper size
+            $dompdf->setPaper('A4', 'portrait');
+    
+            // Render the PDF
+            $dompdf->render();
+    
+            // Save the PDF file to a temp path
+            $pdfOutput = $dompdf->output();
+            $tempPdfPath = WRITEPATH . 'uploads/quotation_' . esc($order['order_id']) . '.pdf';
+            file_put_contents($tempPdfPath, $pdfOutput);
+    
+            return $tempPdfPath;
+        } catch (\Exception $e) {
+            log_message('error', 'Error generating PDF for Order ID: ' . esc($order['order_id']) . '. Error: ' . $e->getMessage());
+            return false;
+        }
+    }
+    
+    private function generatePdfHtml($order) {
+        // Check if the necessary fields exist, else provide default values
+        $order['company_logo'] = isset($order['company_logo']) ? $order['company_logo'] : 'default-logo.png';
+        $order['company_address'] = isset($order['company_address']) ? $order['company_address'] : 'No address available';
+        $order['company_email'] = isset($order['company_email']) ? $order['company_email'] : 'contact@company.com';
+        $order['company_phone'] = isset($order['company_phone']) ? $order['company_phone'] : 'Not Provided';
+        $order['header_text'] = isset($order['header_text']) ? $order['header_text'] : 'Quotation Details';
+        $order['quotation_number'] = isset($order['quotation_number']) ? $order['quotation_number'] : 'N/A';
+        $order['quotation_date'] = isset($order['quotation_date']) ? $order['quotation_date'] : date('Y-m-d');
+        $order['valid_date'] = isset($order['valid_date']) ? $order['valid_date'] : date('Y-m-d', strtotime('+30 days'));
+        $order['bill_from_name'] = isset($order['bill_from_name']) ? $order['bill_from_name'] : 'Company Name';
+        $order['bill_from_address'] = isset($order['bill_from_address']) ? $order['bill_from_address'] : 'Company Address';
+        $order['bill_from_email'] = isset($order['bill_from_email']) ? $order['bill_from_email'] : 'billing@company.com';
+        $order['bill_from_phone'] = isset($order['bill_from_phone']) ? $order['bill_from_phone'] : 'Not Provided';
+        $order['bill_to_name'] = isset($order['bill_to_name']) ? $order['bill_to_name'] : 'Customer Name';
+        $order['bill_to_address'] = isset($order['bill_to_address']) ? $order['bill_to_address'] : 'Customer Address';
+        $order['bill_to_email'] = isset($order['bill_to_email']) ? $order['bill_to_email'] : 'customer@domain.com';
+        $order['bill_to_phone'] = isset($order['bill_to_phone']) ? $order['bill_to_phone'] : 'Not Provided';
+        $order['subtotal'] = isset($order['subtotal']) ? $order['subtotal'] : 0.00;
+        $order['tax'] = isset($order['tax']) ? $order['tax'] : 0.00;
+        $order['discount'] = isset($order['discount']) ? $order['discount'] : 0.00;
+        $order['total'] = isset($order['total']) ? $order['total'] : 0.00;
+        $order['terms_conditions'] = isset($order['terms_conditions']) ? $order['terms_conditions'] : 'No terms and conditions available.';
+        
+        // Start building the HTML
+        return '
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 20px;
+                    color: #333;
+                }
+                .header {
+                    display: flex;
+                    margin-bottom: 30px;
+                }
+                .logo-section {
+                    flex: 1;
+                }
+                .logo-section img {
+                    max-width: 200px;
+                    height: auto;
+                }
+                .header-text {
+                    flex: 1;
+                    background-color: #00A651;
+                    color: white;
+                    padding: 15px;
+                }
+                .title {
+                    font-size: 24px;
+                    font-weight: bold;
+                    color: #333;
+                    border-bottom: 2px solid #00A651;
+                    padding-bottom: 10px;
+                    margin-bottom: 20px;
+                }
+                .quote-info {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+                .bill-section {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 30px;
+                }
+                .bill-box {
+                    width: 48%;
+                }
+                .bill-header {
+                    background-color: #00A651;
+                    color: white;
+                    padding: 8px 15px;
+                    font-weight: bold;
+                }
+                .bill-content {
+                    padding: 15px;
+                    border: 1px solid #ddd;
+                }
+                .items-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-bottom: 20px;
+                }
+                .items-table th {
+                    background-color: #00A651;
+                    color: white;
+                    padding: 10px;
+                    text-align: left;
+                }
+                .items-table td {
+                    padding: 10px;
+                    border: 1px solid #ddd;
+                }
+                .totals {
+                    float: right;
+                    width: 300px;
+                }
+                .totals-row {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 5px 0;
+                    border-bottom: 1px solid #ddd;
+                }
+                .total {
+                    background-color: #00A651;
+                    color: white;
+                    padding: 5px;
+                }
+                .terms {
+                    margin-top: 40px;
+                    font-size: 14px;
+                }
+                .footer {
+                    text-align: center;
+                    margin-top: 30px;
+                    font-size: 14px;
+                }
+                .website {
+                    text-align: center;
+                    margin-top: 20px;
+                    color: #666;
+                    letter-spacing: 2px;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <div class="logo-section">
+                    <img src="' . esc($order['company_logo']) . '" alt="Company Logo">
+                </div>
+                <div class="header-text">
+                    ' . esc($order['header_text']) . '
+                </div>
+            </div>
+    
+            <div class="title">SALES QUOTATION</div>
+    
+            <div class="quote-info">
+                <div class="company-details">
+                    ' . esc($order['company_address']) . '<br>
+                    ' . esc($order['company_email']) . '<br>
+                    ' . esc($order['company_phone']) . '
+                </div>
+                <div class="quote-details">
+                    Quotation No: ' . esc($order['quotation_number']) . '<br>
+                    Quotation Date: ' . esc($order['quotation_date']) . '<br>
+                    Valid Date: ' . esc($order['valid_date']) . '
+                </div>
+            </div>
+    
+            <div class="bill-section">
+                <div class="bill-box">
+                    <div class="bill-header">BILL FROM</div>
+                    <div class="bill-content">
+                        ' . esc($order['bill_from_name']) . '<br>
+                        ' . esc($order['bill_from_address']) . '<br>
+                        ' . esc($order['bill_from_email']) . '<br>
+                        ' . esc($order['bill_from_phone']) . '
+                    </div>
+                </div>
+                <div class="bill-box">
+                    <div class="bill-header">BILL TO</div>
+                    <div class="bill-content">
+                        ' . esc($order['bill_to_name']) . '<br>
+                        ' . esc($order['bill_to_address']) . '<br>
+                        ' . esc($order['bill_to_email']) . '<br>
+                        ' . esc($order['bill_to_phone']) . '
+                    </div>
+                </div>
+            </div>
+    
+            <table class="items-table">
+                <thead>
+                    <tr>
+                        <th>SR #</th>
+                        <th>ITEM DETAILS</th>
+                        <th>QTY</th>
+                        <th>UNIT RATE</th>
+                        <th>TOTAL</th>
+                    </tr>
+                </thead>
+                <tbody>';
+                
+                $items = json_decode($order['order_items'], true);
+                foreach ($items as $index => $item) {
+                    $html .= '
+                    <tr>
+                        <td>' . ($index + 1) . '</td>
+                        <td>' . esc($item['details']) . '</td>
+                        <td>' . esc($item['quantity']) . '</td>
+                        <td>' . number_format($item['unit_rate'], 2) . '</td>
+                        <td>' . number_format($item['quantity'] * $item['unit_rate'], 2) . '</td>
+                    </tr>';
+                }
+    
+                $html .= '
+                </tbody>
+            </table>
+    
+            <div class="totals">
+                <div class="totals-row">
+                    <span>Sub Total:</span>
+                    <span>' . number_format($order['subtotal'], 2) . '</span>
+                </div>
+                <div class="totals-row">
+                    <span>Tax:</span>
+                    <span>' . number_format($order['tax'], 2) . '</span>
+                </div>
+                <div class="totals-row">
+                    <span>Discount:</span>
+                    <span>' . number_format($order['discount'], 2) . '</span>
+                </div>
+                <div class="totals-row total">
+                    <span>Total:</span>
+                    <span>' . number_format($order['total'], 2) . '</span>
+                </div>
+            </div>
+    
+            <div class="terms">
+                <strong>Terms & Conditions:</strong><br>
+                ' . nl2br(esc($order['terms_conditions'])) . '
+            </div>
+    
+            <div class="footer">
+                Thank you for your purchase!
+            </div>
+    
+            <div class="website">
+                w w w . w o r d t e m p l a t e s . o r g
+            </div>
+        </body>
+        </html>';
+    }
+    
+    private function sendEmailWithAttachment($user, $pdfPath)
+    {
+        try {
+            $email = \Config\Services::email();
+            $email->setTo('amalganesh4u@gmail.com');
+            $email->setFrom('no-reply@aranea.in', 'Aranea');
+            $email->setSubject('Your Quotation is Generated');
+            $email->setMessage(
+                'Dear ' . 'User' . ',<br><br>' .
+                'Your quotation has been generated. Please find the attached PDF for details.<br><br>' .
+                'Company: ' . 'Test Company' . '<br><br>' .
+                'Best regards,<br>Aranea Team'
+            );
+    
+            // Attach the PDF
+            $email->attach($pdfPath);
+    
+            return $email->send();
+        } catch (\Exception $e) {
+            log_message('error', 'Error sending email to ' . $user['email'] . '. Error: ' . $e->getMessage());
+            return false;
+        }
+    }
+    
+    private function updateOrderStatus($orderId)
+    {
+        $orderModel = new OrderModel();
+        $orderModel->update($orderId, ['status' => 'quoted']);
+    }
 }

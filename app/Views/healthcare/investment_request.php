@@ -68,42 +68,43 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php if (!empty($invest_requests)): ?>
-                                                <?php foreach ($invest_requests as $request): ?>
-                                                    <tr>
-                                                        <td><?= esc($request['user_name']) ?></td>
-                                                        <td><?= esc($request['product_name']) ?></td>
-                                                        <td><?= esc($request['plan']) ?></td>
-                                                        <td><?= esc($request['time_stamp']) ?></td>
-                                                        <td>
-                                                            <?php if ($request['status'] == ''): ?>
-                                                                <span style="color: orange;">Pending</span>
-                                                            <?php elseif ($request['status'] == 'approved'): ?>
-                                                                <span style="color: green;">Approved</span>
-                                                            <?php elseif ($request['status'] == 'rejected'): ?>
-                                                                <span style="color: red;">Rejected</span>
-                                                            <?php endif; ?>
-                                                        </td>
-                                                        <td>
-                                                            <button class="btn btn-sm btn-success approve-button" 
-                                                                data-id="<?= esc($request['id']) ?>" 
-                                                                data-user-id="<?= esc($request['user_id']) ?>" 
-                                                                data-product-id="<?= esc($request['product_id']) ?>">
-                                                                Approve
-                                                            </button>
-                                                            <button class="btn btn-sm btn-danger reject-button"
-                                                                data-id="<?= esc($request['id']) ?>">
-                                                                Reject
-                                                            </button>
-                                                            <span class="loading-text" style="display: none;">Loading...</span>
-                                                        </td>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            <?php else: ?>
-                                                <tr>
-                                                    <td colspan="6">No investment requests found.</td>
-                                                </tr>
-                                            <?php endif; ?>
+                                        <?php if (!empty($invest_requests)): ?>
+                                            
+    <?php foreach ($invest_requests as $request): ?>
+        <tr>
+            <td><?= esc($request['user_name'] ?? 'N/A') ?></td>
+            <td><?= esc($request['product_name'] ?? 'N/A') ?></td>
+            <td><?= esc($request['plan'] ?? '-') ?></td>
+            <td><?= esc($request['time_stamp'] ?? '-') ?></td>
+            <td>
+                <?php if (empty($request['status'])): ?>
+                    <span style="color: orange;">Pending</span>
+                <?php elseif ($request['status'] == 'approved'): ?>
+                    <span style="color: green;">Approved</span>
+                <?php elseif ($request['status'] == 'rejected'): ?>
+                    <span style="color: red;">Rejected</span>
+                <?php endif; ?>
+            </td>
+            <td>
+                <button class="btn btn-sm btn-success approve-button" 
+                    data-id="<?= esc($request['id'] ?? '') ?>" 
+                    data-user-id="<?= esc($request['user_id'] ?? '') ?>" 
+                    data-product-id="<?= esc($request['product_id'] ?? '') ?>">
+                    Approve
+                </button>
+                <button class="btn btn-sm btn-danger reject-button"
+                    data-id="<?= esc($request['id'] ?? '') ?>">
+                    Reject
+                </button>
+                <span class="loading-text" style="display: none;">Loading...</span>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+<?php else: ?>
+    <tr>
+        <td colspan="6">No investment requests found.</td>
+    </tr>
+<?php endif; ?>
                                         </tbody>
                                     </table>
                                 </div>

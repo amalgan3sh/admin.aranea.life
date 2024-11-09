@@ -36,6 +36,7 @@ class ProductModel extends Model
            return false;
        }
     }
+    
 
     public function getProductsList()
     {

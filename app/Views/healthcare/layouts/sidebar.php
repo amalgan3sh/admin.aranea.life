@@ -72,7 +72,7 @@
                         <a class="nav-link" href="/product_listing">Products</a>
                     </li><!--end nav-item-->
                     <li class="nav-item">
-                        <a class="nav-link" href="">Project</a>
+                        <a class="nav-link" href="/orders">Orders</a>
                     </li><!--end nav-item-->
                     <li class="nav-item">
                         <a class="nav-link" href="">Ecommerce</a>
